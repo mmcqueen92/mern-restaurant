@@ -1,5 +1,5 @@
-import express from "express"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
 import db from "./db/conn.mjs";
 import "./loadEnvironment.mjs";
 
@@ -14,6 +14,5 @@ app.use(cors());
 
 app.listen(PORT, async () => {
     console.log(`Server is running on port: ${PORT}`);
-    console.log("DB STATS: ", await db.stats())
 
 })

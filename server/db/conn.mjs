@@ -4,17 +4,18 @@ import "../loadEnvironment.mjs";
 
 const connectionString = process.env.ATLAS_URI || "";
 
-
 const client = new MongoClient(connectionString);
 
-let conn;
+let db;
 
 try {
-    conn = await client.connect();
-  } catch(e) {
-    console.error(e);
-  }
+  const conn = await client.connect();
+  if (conn) {
+    db = conn.db("mern_restaurant");
 
-let db = conn.db("mern_restaurant");
+  }
+} catch (e) {
+  console.error("ERROR: ", e);
+}
 
 export default db;
