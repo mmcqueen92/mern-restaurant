@@ -1,9 +1,35 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Navbar from './Navbar';
 import ContentContainer from './ContentContainer';
 
 export default function MainContainer() {
     const [page, setPage] = useState("welcome");
+    const [cart, setCart] = useState([]);
+
+    // useEffect to monitor cart for testing purposes
+    useEffect(() => {
+        console.log("CART: ", cart)
+    }, [cart])
+
+    // if item is in cart already, increase quantity by 1. if not, insert new item into cart
+    const addToCart = (item) => {
+        const itemIndex = cart.findIndex(i => i.id === item.id);
+        if (itemIndex < 0) {
+            item.quantity = 1;
+            setCart((prev) => [...prev, item])
+        } else if (itemIndex >=0) {
+            const newArray = cart.map((cartItem, index) => {
+                if (index===itemIndex) {
+                    const returnObj = {...cartItem };
+                    returnObj.quantity++;
+                    return returnObj;
+                } else {
+                    return cartItem;
+                }
+            });
+            setCart(newArray);
+        }
+    }
 
     const menuItems = [
         {
@@ -37,7 +63,11 @@ export default function MainContainer() {
             <ContentContainer
             page={page}
             menuItems={menuItems}
+            addToCart={addToCart}
             ></ContentContainer>
+            <div>
+
+            </div>
         </div>
     )
 }

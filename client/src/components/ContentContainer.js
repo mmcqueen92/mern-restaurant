@@ -5,6 +5,7 @@ import Contact from "./Contact";
 export default function ContentContainer(props) {
     const page = props.page;
     const menuItems = props.menuItems;
+    const addToCart = props.addToCart;
 
 
     if (page==="about") {
@@ -24,6 +25,7 @@ export default function ContentContainer(props) {
             <div>
                 <Menu
                 menuItems={menuItems}
+                addToCart={addToCart}
                 ></Menu>
             </div>
         )
