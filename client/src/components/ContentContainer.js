@@ -6,6 +6,7 @@ export default function ContentContainer(props) {
     const page = props.page;
     const menuItems = props.menuItems;
     const addToCart = props.addToCart;
+    const cart = props.cart;
 
 
     if (page==="about") {
@@ -26,6 +27,7 @@ export default function ContentContainer(props) {
                 <Menu
                 menuItems={menuItems}
                 addToCart={addToCart}
+                cart={cart}
                 ></Menu>
             </div>
         )

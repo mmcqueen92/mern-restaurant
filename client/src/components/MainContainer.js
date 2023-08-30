@@ -64,6 +64,7 @@ export default function MainContainer() {
             page={page}
             menuItems={menuItems}
             addToCart={addToCart}
+            cart={cart}
             ></ContentContainer>
             <div>
 
