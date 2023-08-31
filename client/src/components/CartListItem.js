@@ -1,21 +1,16 @@
 export default function CartListItem(props) {
     const item = props.item;
-
-    //     {
-    //         "id": 1,
-    //         "name": "Food Item 2",
-    //         "description": "This is Food Item 2. Here is placeholder text describing it.",
-    //         "price": 20,
-    //         "category": "Mains",
-    //         "quantity": 2
-    //     }
+    const addToCart = props.addToCart;
+    const reduceQuantity = props.reduceQuantity;
 
     return (
         <div>
             Name: {item.name}<br/>
-            Price per item: {item.price}<br/>
+            Price per item: ${item.price}<br/>
             Quantity: {item.quantity}<br/>
-            Total: {item.price * item.quantity}<br/><br/>
+            <button onClick={() => {addToCart(item)}}>Increase Quantity</button><br/>
+            <button onClick={() => {reduceQuantity(item)}}>Reduce Quantity</button><br/>
+            Total: ${item.price * item.quantity}<br/><br/>
         </div>
     )
 }

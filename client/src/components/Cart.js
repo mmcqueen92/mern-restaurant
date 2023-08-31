@@ -2,6 +2,8 @@ import CartList from "./CartList";
 
 export default function Cart(props) {
     const cart = props.cart;
+    const addToCart = props.addToCart;
+    const reduceQuantity = props.reduceQuantity;
 
     let total = 0;
 
@@ -15,6 +17,8 @@ export default function Cart(props) {
         <div>
             <CartList
             cart={cart}
+            addToCart={addToCart}
+            reduceQuantity={reduceQuantity}
             ></CartList><br/>
             Total: ${total}
         </div>
