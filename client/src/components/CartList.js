@@ -5,14 +5,24 @@ export default function CartList(props) {
   const addToCart = props.addToCart;
   const reduceQuantity = props.reduceQuantity;
 
+  let total = 0;
+  if (cart.length > 0) {
+    for (const item of cart) {
+      total += item.price * item.quantity;
+    }
+  }
+
   const cartComponents = cart.map((item, i) => {
     return (
-      <CartListItem
-        item={item}
-        key={i}
-        addToCart={addToCart}
-        reduceQuantity={reduceQuantity}
-      ></CartListItem>
+      <div>
+        <CartListItem
+          item={item}
+          key={i}
+          addToCart={addToCart}
+          reduceQuantity={reduceQuantity}
+        ></CartListItem>
+        Total: {total}
+      </div>
     );
   });
 

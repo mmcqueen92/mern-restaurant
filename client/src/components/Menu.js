@@ -2,6 +2,7 @@ import MenuListItem from "./MenuListItem";
 import Cart from "./Cart";
 
 export default function Menu(props) {
+    const setPage = props.setPage;
     const menuItems = props.menuItems;
     const addToCart = props.addToCart;
     const reduceQuantity = props.reduceQuantity;
@@ -16,6 +17,7 @@ export default function Menu(props) {
             {menuComponents}<br/>
             This is your order:<br/><br/>
             <Cart
+            setPage={setPage}
             addToCart={addToCart}
             reduceQuantity={reduceQuantity}
             cart={cart}

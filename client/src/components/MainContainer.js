@@ -79,6 +79,7 @@ export default function MainContainer() {
     <div>
       <Navbar setPage={setPage}></Navbar>
       <ContentContainer
+        setPage={setPage}
         page={page}
         menuItems={menuItems}
         addToCart={addToCart}
