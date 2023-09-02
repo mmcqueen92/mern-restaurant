@@ -10,6 +10,8 @@ export default function ContentContainer(props) {
   const addToCart = props.addToCart;
   const cart = props.cart;
   const reduceQuantity = props.reduceQuantity;
+  const address = props.address;
+  const handleAddress = props.handleAddress;
 
   if (page === "about") {
     return (
@@ -41,6 +43,8 @@ export default function ContentContainer(props) {
         cart={cart}
         addToCart={addToCart}
         reduceQuantity={reduceQuantity}
+        address={address}
+        handleAddress={handleAddress}
       ></Checkout>
     );
   }

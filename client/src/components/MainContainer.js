@@ -5,11 +5,17 @@ import ContentContainer from "./ContentContainer";
 export default function MainContainer() {
   const [page, setPage] = useState("welcome");
   const [cart, setCart] = useState([]);
+  const [address, setAddress] = useState("");
 
   // useEffect to monitor cart for testing purposes
   useEffect(() => {
     console.log("CART: ", cart);
   }, [cart]);
+
+  // handleAddress function for controlled component in Checkout
+  const handleAddress = (event) => {
+    setAddress(event.target.value);
+  };
 
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
@@ -85,6 +91,8 @@ export default function MainContainer() {
         addToCart={addToCart}
         reduceQuantity={reduceQuantity}
         cart={cart}
+        address={address}
+        handleAddress={handleAddress}
       ></ContentContainer>
       <div></div>
     </div>
