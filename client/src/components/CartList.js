@@ -14,10 +14,9 @@ export default function CartList(props) {
 
   const cartComponents = cart.map((item, i) => {
     return (
-      <div>
+      <div key={i}>
         <CartListItem
           item={item}
-          key={i}
           addToCart={addToCart}
           reduceQuantity={reduceQuantity}
         ></CartListItem>
