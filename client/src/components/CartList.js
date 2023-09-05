@@ -20,7 +20,7 @@ export default function CartList(props) {
           addToCart={addToCart}
           reduceQuantity={reduceQuantity}
         ></CartListItem>
-        Total: {total}
+        Total: ${total}
       </div>
     );
   });

@@ -9,7 +9,7 @@ export default function MenuListItem(props) {
     return (
         <div>
             Food name: {name}<br/>
-            Food price: {price}<br/>
+            Food price: ${price}<br/>
             Food description: {description}<br/><br/>
             <button onClick={() => {
                 addToCart(item)
