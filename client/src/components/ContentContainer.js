@@ -1,6 +1,6 @@
-import Menu from "./Menu";
-import About from "./About";
-import Contact from "./Contact";
+import Menu from "../pages/Menu";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
 import Checkout from "./Checkout";
 
 export default function ContentContainer(props) {

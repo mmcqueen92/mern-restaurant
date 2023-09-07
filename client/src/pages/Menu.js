@@ -1,5 +1,5 @@
-import MenuListItem from "./MenuListItem";
-import Cart from "./Cart";
+import MenuListItem from "../components/MenuListItem";
+import Cart from "../components/Cart";
 
 export default function Menu(props) {
     const setPage = props.setPage;

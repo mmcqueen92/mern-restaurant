@@ -83,7 +83,6 @@ export default function MainContainer() {
 
   return (
     <div>
-      <Navbar setPage={setPage}></Navbar>
       <ContentContainer
         setPage={setPage}
         page={page}
