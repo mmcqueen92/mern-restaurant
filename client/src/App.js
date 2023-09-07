@@ -7,9 +7,11 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [address, setAddress] = useState("");
 
   const menuItems = [
     {
@@ -74,6 +76,11 @@ function App() {
     setCart(newArray);
   };
 
+    // handleAddress function for controlled component in Checkout
+    const handleAddress = (event) => {
+      setAddress(event.target.value);
+    };
+
   return (
     <div className="App">
       <Router>
@@ -81,12 +88,34 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={Home}></Route>
-            <Route path="/menu" element={Menu}></Route>
-            <Route path="/about" element={About}></Route>
-            <Route path="/contact" element={Contact}></Route>
+            <Route
+              path="/menu"
+              element={
+                <Menu
+                  menuItems={menuItems}
+                  addToCart={addToCart}
+                  reduceQuantity={reduceQuantity}
+                  cart={cart}
+                />
+              }
+            ></Route>
+            <Route
+              path="/checkout"
+              element={
+                <Checkout
+                  addToCart={addToCart}
+                  reduceQuantity={reduceQuantity}
+                  cart={cart}
+                  address={address}
+                  handleAddress={handleAddress}
+                />
+              }
+            ></Route>
+            <Route path="/about" element={<About/>}></Route>
+            <Route path="/contact" element={<Contact/>}></Route>
           </Routes>
         </main>
-        <MainContainer></MainContainer>
+        
       </Router>
     </div>
   );

@@ -1,7 +1,7 @@
 import Menu from "../pages/Menu";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import Checkout from "./Checkout";
+import Checkout from "../pages/Checkout";
 
 export default function ContentContainer(props) {
   const page = props.page;

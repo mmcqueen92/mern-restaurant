@@ -1,7 +1,8 @@
+import { NavLink } from "react-router-dom";
 import CartList from "./CartList";
 
 export default function Cart(props) {
-    const setPage = props.setPage;
+
     const cart = props.cart;
     const addToCart = props.addToCart;
     const reduceQuantity = props.reduceQuantity;
@@ -14,7 +15,7 @@ export default function Cart(props) {
             addToCart={addToCart}
             reduceQuantity={reduceQuantity}
             ></CartList>
-            <button onClick={() => {setPage("checkout")}}>Checkout</button>
+            <NavLink to="/checkout">Checkout</NavLink>
         </div>
     )
 }

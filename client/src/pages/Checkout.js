@@ -1,4 +1,4 @@
-import CartList from "./CartList";
+import CartList from "../components/CartList";
 
 
 export default function Checkout(props) {
