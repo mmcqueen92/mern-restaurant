@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
 import ContentContainer from "./ContentContainer";
 
 export default function MainContainer() {

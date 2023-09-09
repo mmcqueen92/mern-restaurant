@@ -1,13 +1,13 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import MainContainer from "./components/MainContainer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
 import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -40,6 +40,7 @@ function App() {
     },
   ];
 
+  // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
     const itemIndex = cart.findIndex((i) => i.id === item.id);
     if (itemIndex < 0) {
@@ -59,6 +60,7 @@ function App() {
     }
   };
 
+  // reduce quantity of given item by 1, and filter to remove any items with quantity == 0
   const reduceQuantity = (item) => {
     const itemIndex = cart.findIndex((i) => i.id === item.id);
 
@@ -113,6 +115,7 @@ function App() {
             ></Route>
             <Route path="/about" element={<About/>}></Route>
             <Route path="/contact" element={<Contact/>}></Route>
+            <Route path="/payment" element={<Payment />}></Route>
           </Routes>
         </main>
         
