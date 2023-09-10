@@ -1,24 +1,27 @@
 const express = require("express");
 const cors = require("cors");
-// const db = require("./db/conn.js");
+const db = require("./db/conn.js");
 const loadEnv = require("./loadEnvironment.js");
+const PORT = process.env.PORT || 5050;
+const app = express();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-08-01",
 });
 
-const PORT = process.env.PORT || 5050;
 
-const app = express();
 
 app.use(cors());
 // app.use(express.json());
 
+// send stripe key to create payment
 app.get("/config", (req, res) => {
   res.send({
     publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   });
 });
 
+
+// create payment intent for stripe payment
 app.post("/create-payment-intent", async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
