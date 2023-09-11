@@ -1,16 +1,30 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./db/conn.js");
-const loadEnv = require("./loadEnvironment.js");
+require("./loadEnvironment.js");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const dbRouter = require('./routes/db-routes.js')
 const PORT = process.env.PORT || 5050;
-const app = express();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2022-08-01",
+    apiVersion: "2022-08-01",
 });
 
+const app = express();
+
+// ----- TESTING DIGITAL OCEAN CONNECTION START -----
+mongoose
+  .connect(process.env.ATLAS_URI, { useNewUrlParser: true })
+  .then(() => console.log(`Database connected successfully`))
+  .catch((err) => console.log(err));
+
+mongoose.Promise = global.Promise;
+// ----- TESTING DIGITAL OCEAN CONNECTION END -----
+
 app.use(cors());
-// app.use(express.json());
+
+
+// db routes
+app.use('/api', dbRouter);
 
 // send stripe key to create payment
 app.get("/config", (req, res) => {
@@ -18,7 +32,6 @@ app.get("/config", (req, res) => {
     publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   });
 });
-
 
 // create payment intent for stripe payment
 app.post("/create-payment-intent", async (req, res) => {
@@ -43,5 +56,5 @@ app.post("/create-payment-intent", async (req, res) => {
 
 app.listen(PORT, async () => {
   console.log(`Server is running on port: ${PORT}`);
-//   console.log("DB: ", db)
+  //   console.log("DB: ", db)
 });
