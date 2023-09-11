@@ -16,3 +16,5 @@ router.post("/orders", (req, res, next) => {
     .then((data) => res.json(data))
     .catch(next);
 });
+
+module.exports = router;
