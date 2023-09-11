@@ -1,7 +1,5 @@
-// import { MongoClient } from "mongodb";
 const {MongoClient} = require('mongodb');
 
-// import "../loadEnvironment.js";
 const loadEnvironment = require('../loadEnvironment.js')
 
 const connectionString = process.env.ATLAS_URI || "";
@@ -13,7 +11,7 @@ let db;
 try {
   client.connect().then((res) => {
     if (res.db) {
-      db = res.db;
+      db = res.db
     }
     
   })

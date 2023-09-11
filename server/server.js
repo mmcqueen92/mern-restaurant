@@ -2,13 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./db/conn.js");
 const loadEnv = require("./loadEnvironment.js");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5050;
 const app = express();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-08-01",
 });
-
-
 
 app.use(cors());
 // app.use(express.json());
@@ -44,4 +43,5 @@ app.post("/create-payment-intent", async (req, res) => {
 
 app.listen(PORT, async () => {
   console.log(`Server is running on port: ${PORT}`);
+//   console.log("DB: ", db)
 });
