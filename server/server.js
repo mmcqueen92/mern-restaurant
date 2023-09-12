@@ -21,7 +21,7 @@ mongoose.Promise = global.Promise;
 // ----- TESTING DIGITAL OCEAN CONNECTION END -----
 
 app.use(cors());
-
+app.use(bodyParser.json());
 
 // db routes
 app.use('/api', dbRouter);

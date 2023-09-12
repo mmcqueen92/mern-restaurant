@@ -12,6 +12,7 @@ import Payment from "./pages/Payment";
 function App() {
   const [cart, setCart] = useState([]);
   const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
 
   const menuItems = [
     {
@@ -78,10 +79,14 @@ function App() {
     setCart(newArray);
   };
 
-    // handleAddress function for controlled component in Checkout
-    const handleAddress = (event) => {
-      setAddress(event.target.value);
-    };
+  // handleAddress function for controlled component in Checkout
+  const handleAddress = (event) => {
+    setAddress(event.target.value);
+  };
+
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  }
 
   return (
     <div className="App">
@@ -109,16 +114,20 @@ function App() {
                   reduceQuantity={reduceQuantity}
                   cart={cart}
                   address={address}
+                  email={email}
                   handleAddress={handleAddress}
+                  handleEmail={handleEmail}
                 />
               }
             ></Route>
-            <Route path="/about" element={<About/>}></Route>
-            <Route path="/contact" element={<Contact/>}></Route>
-            <Route path="/payment" element={<Payment />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
+            <Route
+              path="/payment"
+              element={<Payment cart={cart} address={address} email={email} />}
+            ></Route>
           </Routes>
         </main>
-        
       </Router>
     </div>
   );

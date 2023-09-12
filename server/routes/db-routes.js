@@ -11,8 +11,15 @@ const Order = require("../models/orderSchema");
 // }
 
 // POST request to "/api/orders":
-router.post("/orders", (req, res, next) => {
-  Order.create(req.body)
+router.post("/create-order", (req, res, next) => {
+    console.log("REQ.BODY: ", req.body)
+  const { items, address, email, status } = req.body;
+  Order.create({
+    items,
+    address,
+    email,
+    status,
+  })
     .then((data) => res.json(data))
     .catch(next);
 });

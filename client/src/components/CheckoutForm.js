@@ -11,6 +11,9 @@ export default function CheckoutForm(props) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState(null);
 
+  const { cart, address, email } = props;
+  let items;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,14 +28,42 @@ export default function CheckoutForm(props) {
       confirmParams: {
         return_url: `${window.location.origin}/completion`,
       },
-      redirect: "if_required"
+      redirect: "if_required",
     });
 
     if (error) {
-        setMessage(error.message)
-    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        // payment success block. add order to db here
-        setMessage("Payment status: " + paymentIntent.status)
+      setMessage(error.message);
+    } else if (paymentIntent && paymentIntent.status === "succeeded") {
+      // payment success block. add order to db here
+      setMessage("Payment status: " + paymentIntent.status);
+
+      items = cart.map((item) => {
+        return {
+          itemId: item.id,
+          quantity: item.quantity,
+        };
+      });
+
+      const urlEncoded = new URLSearchParams({
+        items: items,
+        address: address,
+        email: email,
+        status: "paid",
+      });
+
+      fetch("http://localhost:5050/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items,
+          address: address,
+          email: email,
+          status: "paid",
+        }),
+      })
+      .then((res) => {
+        console.log("res: ", res)
+      })
     }
 
     setIsProcessing(false);

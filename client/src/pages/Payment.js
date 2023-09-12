@@ -3,9 +3,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 
-export default function Payment() {
+export default function Payment(props) {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  const {cart, address, email} = props;
 
   useEffect(() => {
     fetch("http://localhost:5050/config").then(async (r) => {
@@ -31,7 +32,7 @@ export default function Payment() {
       <h1>Payment</h1>
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm />
+          <CheckoutForm cart={cart} address={address} email={email}/>
         </Elements>
       )}
     </div>

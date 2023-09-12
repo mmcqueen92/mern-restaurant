@@ -7,6 +7,8 @@ export default function Checkout(props) {
   const reduceQuantity = props.reduceQuantity;
   const address = props.address;
   const handleAddress = props.handleAddress;
+  const email = props.email;
+  const handleEmail = props.handleEmail;
 
   return (
     <div>
@@ -17,6 +19,12 @@ export default function Checkout(props) {
           placeholder="Enter your address"
           onChange={handleAddress}
           value={address}
+        ></input>
+        <input
+          type="text"
+          placeholder="Enter an email"
+          onChange={handleEmail}
+          value={email}
         ></input>
       </form>
       <CartList
