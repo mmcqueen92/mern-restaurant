@@ -12,7 +12,6 @@ const Order = require("../models/orderSchema");
 
 // POST request to "/api/orders":
 router.post("/create-order", (req, res, next) => {
-    console.log("REQ.BODY: ", req.body)
   const { items, address, email, status } = req.body;
   Order.create({
     items,

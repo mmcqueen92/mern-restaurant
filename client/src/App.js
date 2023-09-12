@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -10,9 +10,24 @@ import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const initialCart = useMemo(() => [], [])
+  const [cart, setCart] = useState(initialCart);
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
+
+  // on render check for cart in local storage, if it is NOT null (it exists) set cart(state) to match the cart in local storage
+  useEffect(() => {
+    const cartFromLocalStorage = window.localStorage.getItem('mern_restaurant_cart');
+    const parsedCartFromLocalStorage = JSON.parse(cartFromLocalStorage);
+    if (cartFromLocalStorage !== null) setCart(parsedCartFromLocalStorage);
+  }, [])
+
+  // whenever cart is adjusted set local storage to match
+  useEffect(() => {
+    if (cart !== initialCart) {
+      localStorage.setItem("mern_restaurant_cart", JSON.stringify(cart))
+    }
+  }, [cart, initialCart])
 
   const menuItems = [
     {

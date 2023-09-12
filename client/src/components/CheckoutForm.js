@@ -37,6 +37,7 @@ export default function CheckoutForm(props) {
       // payment success block. add order to db here
       setMessage("Payment status: " + paymentIntent.status);
 
+      // parse cart for create-order
       items = cart.map((item) => {
         return {
           itemId: item.id,
@@ -44,13 +45,7 @@ export default function CheckoutForm(props) {
         };
       });
 
-      const urlEncoded = new URLSearchParams({
-        items: items,
-        address: address,
-        email: email,
-        status: "paid",
-      });
-
+      // api request to create-order
       fetch("http://localhost:5050/api/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -65,7 +60,6 @@ export default function CheckoutForm(props) {
         console.log("res: ", res)
       })
     }
-
     setIsProcessing(false);
   };
 
