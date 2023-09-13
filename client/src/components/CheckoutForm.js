@@ -57,7 +57,7 @@ export default function CheckoutForm(props) {
         }),
       })
       .then((res) => {
-        console.log("res: ", res)
+        console.log("create order res: ", res)
       })
     }
     setIsProcessing(false);

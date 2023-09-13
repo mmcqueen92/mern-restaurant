@@ -8,6 +8,8 @@ import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
+import AdminDashboard from "./pages/AdminDashboard";
+import EditMenu from "./pages/EditMenu";
 
 function App() {
   const initialCart = useMemo(() => [], [])
@@ -99,6 +101,7 @@ function App() {
     setAddress(event.target.value);
   };
 
+  // handleEmail function for controlled component in Checkout
   const handleEmail = (event) => {
     setEmail(event.target.value);
   }
@@ -141,6 +144,14 @@ function App() {
               path="/payment"
               element={<Payment cart={cart} address={address} email={email} />}
             ></Route>
+            <Route
+            path="admin-dashboard"
+            element={<AdminDashboard/>}>
+            </Route>
+            <Route
+            path="edit-menu"
+            element={<EditMenu/>}>
+            </Route>
           </Routes>
         </main>
       </Router>
