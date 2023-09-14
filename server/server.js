@@ -6,12 +6,13 @@ const bodyParser = require("body-parser");
 const dbRouter = require('./routes/db-routes.js')
 const PORT = process.env.PORT || 5050;
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2022-08-01",
+  apiVersion: "2022-08-01",
 });
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
 // ----- TESTING DIGITAL OCEAN CONNECTION START -----
 mongoose
   .connect(process.env.ATLAS_URI, { useNewUrlParser: true })

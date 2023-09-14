@@ -32,7 +32,7 @@ function App() {
     const parsedCartFromLocalStorage = JSON.parse(cartFromLocalStorage);
     if (cartFromLocalStorage !== null) setCart(parsedCartFromLocalStorage);
     // fetch menu
-    setMenu(fetchMenu());
+    fetchMenu().then((res) => setMenu(res));
   }, []);
 
   // whenever cart is adjusted set local storage to match
@@ -41,6 +41,10 @@ function App() {
       localStorage.setItem("mern_restaurant_cart", JSON.stringify(cart));
     }
   }, [cart, initialCart]);
+
+  useEffect(() => {
+    console.log("MENU: ", menu)
+  }, [menu])
 
   const menuItems = [
     {
@@ -71,7 +75,7 @@ function App() {
 
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
-    const itemIndex = cart.findIndex((i) => i.id === item.id);
+    const itemIndex = cart.findIndex((i) => i._id === item._id);
     if (itemIndex < 0) {
       item.quantity = 1;
       setCart((prev) => [...prev, item]);
@@ -91,7 +95,7 @@ function App() {
 
   // reduce quantity of given item by 1, and filter to remove any items with quantity == 0
   const reduceQuantity = (item) => {
-    const itemIndex = cart.findIndex((i) => i.id === item.id);
+    const itemIndex = cart.findIndex((i) => i._id === item._id);
 
     let newArray = cart.map((cartItem, index) => {
       if (index === itemIndex) {
@@ -123,12 +127,12 @@ function App() {
         <Navbar></Navbar>
         <main>
           <Routes>
-            <Route path="/" element={Home}></Route>
+            <Route path="/" element={<Home />}></Route>
             <Route
               path="/menu"
               element={
                 <Menu
-                  menuItems={menuItems}
+                  menuItems={menu}
                   addToCart={addToCart}
                   reduceQuantity={reduceQuantity}
                   cart={cart}
