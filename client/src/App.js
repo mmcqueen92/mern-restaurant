@@ -42,37 +42,6 @@ function App() {
     }
   }, [cart, initialCart]);
 
-  useEffect(() => {
-    console.log("MENU: ", menu)
-  }, [menu])
-
-  const menuItems = [
-    {
-      id: 0,
-      name: "Food Item 1",
-      description:
-        "This is Food Item 1. Here is placeholder text describing it.",
-      price: 10,
-      category: "Appetizers",
-    },
-    {
-      id: 1,
-      name: "Food Item 2",
-      description:
-        "This is Food Item 2. Here is placeholder text describing it.",
-      price: 20,
-      category: "Mains",
-    },
-    {
-      id: 2,
-      name: "Food Item 3",
-      description:
-        "This is Food Item 3. Here is placeholder text describing it.",
-      price: 5,
-      category: "Dessert",
-    },
-  ];
-
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
     const itemIndex = cart.findIndex((i) => i._id === item._id);
