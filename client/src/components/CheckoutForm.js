@@ -56,8 +56,9 @@ export default function CheckoutForm(props) {
           status: "paid",
         }),
       })
+      .then((res) => res.json())
       .then((res) => {
-        console.log("create order res: ", res)
+        console.log("Response: ", res)
       })
     }
     setIsProcessing(false);

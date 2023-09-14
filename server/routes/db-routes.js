@@ -14,14 +14,25 @@ const Item = require("../models/itemSchema");
 // POST request to create new order
 router.post("/create-order", (req, res, next) => {
   const { items, address, email, status } = req.body;
-  Order.create({
-    items,
-    address,
-    email,
-    status,
-  })
-    .then((data) => res.json(data))
-    .catch(next);
+  const createOrder = async () => {
+    try {
+      let order = await Order.create({
+        items,
+        address,
+        email,
+        status,
+      })
+      order = JSON.stringify(order)
+      res.status(201).json(order)
+
+    } catch(e) {
+      res.status(500).json({
+        ok: false,
+        message: "Failed to create order"
+      })
+    }
+  }
+  createOrder();
 });
 
 // POST request to create new item

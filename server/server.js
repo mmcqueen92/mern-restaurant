@@ -13,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+
 // ----- TESTING DIGITAL OCEAN CONNECTION START -----
 mongoose
   .connect(process.env.ATLAS_URI, { useNewUrlParser: true })
@@ -21,8 +22,6 @@ mongoose
 
 mongoose.Promise = global.Promise;
 // ----- TESTING DIGITAL OCEAN CONNECTION END -----
-
-
 
 // db routes
 app.use('/api', dbRouter);
