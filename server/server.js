@@ -10,7 +10,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
 });
 
 const app = express();
-
+app.use(cors());
+app.use(bodyParser.json());
 // ----- TESTING DIGITAL OCEAN CONNECTION START -----
 mongoose
   .connect(process.env.ATLAS_URI, { useNewUrlParser: true })
@@ -20,8 +21,7 @@ mongoose
 mongoose.Promise = global.Promise;
 // ----- TESTING DIGITAL OCEAN CONNECTION END -----
 
-app.use(cors());
-app.use(bodyParser.json());
+
 
 // db routes
 app.use('/api', dbRouter);

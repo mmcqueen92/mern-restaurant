@@ -12,24 +12,35 @@ import AdminDashboard from "./pages/AdminDashboard";
 import EditMenu from "./pages/EditMenu";
 
 function App() {
-  const initialCart = useMemo(() => [], [])
+  const initialCart = useMemo(() => [], []);
   const [cart, setCart] = useState(initialCart);
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
+  const [menu, setMenu] = useState([]);
 
-  // on render check for cart in local storage, if it is NOT null (it exists) set cart(state) to match the cart in local storage
+  const fetchMenu = async () => {
+    const response = await fetch("http://localhost:5050/api/menu");
+    const data = await response.json();
+    return data;
+  };
+
   useEffect(() => {
-    const cartFromLocalStorage = window.localStorage.getItem('mern_restaurant_cart');
+    // on render check for cart in local storage, if it is NOT null (it exists) set cart(state) to match the cart in local storage
+    const cartFromLocalStorage = window.localStorage.getItem(
+      "mern_restaurant_cart"
+    );
     const parsedCartFromLocalStorage = JSON.parse(cartFromLocalStorage);
     if (cartFromLocalStorage !== null) setCart(parsedCartFromLocalStorage);
-  }, [])
+    // fetch menu
+    setMenu(fetchMenu());
+  }, []);
 
   // whenever cart is adjusted set local storage to match
   useEffect(() => {
     if (cart !== initialCart) {
-      localStorage.setItem("mern_restaurant_cart", JSON.stringify(cart))
+      localStorage.setItem("mern_restaurant_cart", JSON.stringify(cart));
     }
-  }, [cart, initialCart])
+  }, [cart, initialCart]);
 
   const menuItems = [
     {
@@ -104,7 +115,7 @@ function App() {
   // handleEmail function for controlled component in Checkout
   const handleEmail = (event) => {
     setEmail(event.target.value);
-  }
+  };
 
   return (
     <div className="App">
@@ -144,14 +155,8 @@ function App() {
               path="/payment"
               element={<Payment cart={cart} address={address} email={email} />}
             ></Route>
-            <Route
-            path="admin-dashboard"
-            element={<AdminDashboard/>}>
-            </Route>
-            <Route
-            path="edit-menu"
-            element={<EditMenu/>}>
-            </Route>
+            <Route path="admin-dashboard" element={<AdminDashboard />}></Route>
+            <Route path="edit-menu" element={<EditMenu />}></Route>
           </Routes>
         </main>
       </Router>
