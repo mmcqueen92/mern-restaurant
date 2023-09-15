@@ -17,9 +17,15 @@ export default function Payment(props) {
   }, []);
 
   useEffect(() => {
+    let itemTotal = 0;
+    for (let item of cart) {
+      itemTotal += item.price*item.quantity
+    }
+    console.log("ITEMTOTAL: ", itemTotal)
     fetch("http://localhost:5050/create-payment-intent", {
       method: "POST",
-      body: JSON.stringify({}),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({itemTotal: itemTotal}),
     }).then(async (r) => {
       const { clientSecret } = await r.json();
 
