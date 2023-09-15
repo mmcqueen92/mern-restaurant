@@ -40,7 +40,7 @@ export default function CheckoutForm(props) {
       // parse cart for create-order
       items = cart.map((item) => {
         return {
-          itemId: item.id,
+          itemId: item._id,
           quantity: item.quantity,
         };
       });
