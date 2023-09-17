@@ -4,12 +4,14 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutForm(props) {
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
 
   const { cart, address, email } = props;
   let items;
@@ -34,6 +36,7 @@ export default function CheckoutForm(props) {
     if (error) {
       setMessage(error.message);
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
+    
       // payment success block. add order to db here
       setMessage("Payment status: " + paymentIntent.status);
 
@@ -58,7 +61,8 @@ export default function CheckoutForm(props) {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log("Response: ", res)
+        const resObj = JSON.parse(res)
+        navigate(`/view-order/${resObj._id}`)
       })
     }
     setIsProcessing(false);

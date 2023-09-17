@@ -8,6 +8,11 @@ export default function Payment(props) {
   const [clientSecret, setClientSecret] = useState("");
   const {cart, address, email} = props;
 
+  let itemTotal = 0;
+  for (let item of cart) {
+    itemTotal += item.price*item.quantity
+  }
+
   useEffect(() => {
     fetch("http://localhost:5050/config").then(async (r) => {
       const { publishableKey } = await r.json();
@@ -17,11 +22,6 @@ export default function Payment(props) {
   }, []);
 
   useEffect(() => {
-    let itemTotal = 0;
-    for (let item of cart) {
-      itemTotal += item.price*item.quantity
-    }
-    console.log("ITEMTOTAL: ", itemTotal)
     fetch("http://localhost:5050/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ export default function Payment(props) {
 
       setClientSecret(clientSecret);
     });
-  }, []);
+  }, [itemTotal]);
 
   return (
     <div>

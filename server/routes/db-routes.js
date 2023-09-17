@@ -24,6 +24,7 @@ router.post("/create-order", (req, res, next) => {
       })
       order = JSON.stringify(order)
       res.status(201).json(order)
+      // res.redirect(`http://localhost:3000/view-order/${order._id}`)
 
     } catch(e) {
       res.status(500).json({
@@ -50,6 +51,14 @@ router.post("/create-item", (req, res, next) => {
 // GET request to fetch active menu items
 router.get("/menu", (req, res, next) => {
   Item.find({isActive: true})
+  .then((data) => {
+    res.json(data);
+  })
+})
+
+router.get("/find-order/:id", (req, res, next) => {
+  const orderId = req.params.id
+  Order.find({_id: orderId})
   .then((data) => {
     res.json(data);
   })

@@ -10,7 +10,7 @@ import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import AdminDashboard from "./pages/AdminDashboard";
 import EditMenu from "./pages/EditMenu";
-import OrderStatus from "./pages/OrderStatus";
+import ViewOrder from "./pages/ViewOrder";
 
 function App() {
   const initialCart = useMemo(() => [], []);
@@ -129,9 +129,9 @@ function App() {
               path="/payment"
               element={<Payment cart={cart} address={address} email={email} />}
             ></Route>
-            <Route path="admin-dashboard" element={<AdminDashboard />}></Route>
-            <Route path="edit-menu" element={<EditMenu />}></Route>
-            <Route path="order-status" element={<OrderStatus/>}></Route>
+            <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
+            <Route path="/edit-menu" element={<EditMenu />}></Route>
+            <Route path="/view-order/:id" element={<ViewOrder/>}></Route>
           </Routes>
         </main>
       </Router>
