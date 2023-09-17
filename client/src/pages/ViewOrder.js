@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function ViewOrder(props) {
     const {id} = useParams();
-    const [orderInfo, setOrderInfo] = useState({});
+    const [orderInfo, setOrderInfo] = useState();
 
     const fetchOrder = async () => {
         const response = await fetch(`http://localhost:5050/api/find-order/${id}`);
@@ -12,12 +12,13 @@ export default function ViewOrder(props) {
       };
 
     useEffect(() => {
-        fetchOrder().then((res) => setOrderInfo(res));
-    }, [])
+        fetchOrder().then((res) => setOrderInfo(res[0]));
+    })
+
     return(
         <div>
             <h3>Order {id}</h3>
-            <p>Order Status: {orderInfo[0].status}</p>
+            <p>Order Status: {orderInfo ? orderInfo.status : "...loading"}</p>
 
         </div>
     )

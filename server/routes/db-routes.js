@@ -56,6 +56,7 @@ router.get("/menu", (req, res, next) => {
   })
 })
 
+// GET request to fetch an order by order._id (req.params.id)
 router.get("/find-order/:id", (req, res, next) => {
   const orderId = req.params.id
   Order.find({_id: orderId})
