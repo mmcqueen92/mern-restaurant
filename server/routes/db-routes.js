@@ -42,7 +42,7 @@ router.post("/create-item", (req, res, next) => {
 
 // GET request to fetch active menu items
 router.get("/menu", (req, res, next) => {
-  Item.find({isActive: true})
+  Item.find({})
   .then((data) => {
     res.json(data);
   })
