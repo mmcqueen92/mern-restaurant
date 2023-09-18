@@ -1,5 +1,5 @@
 export default function EditMenuListItem(props) {
-    const {item} = props;
+    const { item, enableItem, disableItem } = props;
     console.log("ITEM: ", item)
     return (
         <div>
@@ -8,6 +8,8 @@ export default function EditMenuListItem(props) {
             {item.description}<br/>
             ${item.price}<br/>
             {item.isActive ? "Active" : "Inactive"}<br/>
+            <button onClick={() => {enableItem(item._id)}}>Enable</button>
+            <button onClick={() => {disableItem(item._id)}}>Disable</button>
         </div>
     )
 }

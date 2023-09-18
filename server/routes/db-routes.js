@@ -50,11 +50,25 @@ router.get("/menu", (req, res, next) => {
 
 // GET request to fetch an order by order._id (req.params.id)
 router.get("/find-order/:id", (req, res, next) => {
-  const orderId = req.params.id
+  const orderId = req.params.id;
   Order.find({_id: orderId})
   .then((data) => {
     res.json(data);
   })
+})
+
+// GET request to enable an item by item._id (req.params.id)
+router.get("/enable-item/:id", (req, res, next) => {
+  const itemId = req.params.id;
+  Item.findOneAndUpdate({_id: itemId}, {isActive: true}, {new: true})
+  .then((data)  => res.json(data))
+})
+
+// GET request to disable an item by item._id (req.params.id)
+router.get("/disable-item/:id", (req, res, next) => {
+  const itemId = req.params.id;
+  Item.findOneAndUpdate({_id: itemId}, {isActive: false}, {new: true})
+  .then((data)  => res.json(data))
 })
 
 module.exports = router;
