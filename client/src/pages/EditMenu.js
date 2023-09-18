@@ -7,7 +7,6 @@ export default function EditMenu(props) {
   const enableItem = async (itemId) => {
     const sendReq = await fetch(`http://localhost:5050/api/enable-item/${itemId}`);
     const data = await sendReq.json();
-    console.log("UPDATED ITEM: ", data)
 
     const newState = menu.map((item) => {
       if (item._id === data._id) {
@@ -23,7 +22,6 @@ export default function EditMenu(props) {
   const disableItem = async (itemId) => {
     const sendReq = await fetch(`http://localhost:5050/api/disable-item/${itemId}`);
     const data = await sendReq.json();
-    console.log("UPDATED ITEM: ", data)
 
     const newState = menu.map((item) => {
       if (item._id === data._id) {
@@ -39,7 +37,7 @@ export default function EditMenu(props) {
   return (
     <div>
       <h1>Edit Menu</h1>
-      <NewItemForm/><br/>
+      <NewItemForm setMenu={setMenu}/><br/>
       <EditMenuList menu={menu} enableItem={enableItem} disableItem={disableItem}/>
     </div>
   );

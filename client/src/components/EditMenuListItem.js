@@ -1,6 +1,6 @@
 export default function EditMenuListItem(props) {
     const { item, enableItem, disableItem } = props;
-    console.log("ITEM: ", item)
+
     return (
         <div>
             <h5>EditMenuListItem</h5>

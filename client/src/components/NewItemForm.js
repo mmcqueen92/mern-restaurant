@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function NewItemForm(props) {
+  const {setMenu} = props;
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -20,7 +21,7 @@ export default function NewItemForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5050/api/create-item", {
+    const newItem = await fetch("http://localhost:5050/api/create-item", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -28,9 +29,11 @@ export default function NewItemForm(props) {
         description,
         price,
       }),
-    }).then((res) => {
-      console.log("create item res: ", res);
-    });
+    })
+
+    const data = await newItem.json();
+
+    setMenu((prev) => {return [...prev, data]})
   };
 
   return (
