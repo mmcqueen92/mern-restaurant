@@ -3,14 +3,6 @@ const router = express.Router();
 const Order = require("../models/orderSchema");
 const Item = require("../models/itemSchema");
 
-// Order schema expects the following object:
-// {
-//  email: String,
-//  items: Array,
-//  address: String,
-//  status: String
-// }
-
 // POST request to create new order
 router.post("/create-order", (req, res, next) => {
   const { items, address, email, status } = req.body;
