@@ -130,7 +130,7 @@ function App() {
               element={<Payment cart={cart} address={address} email={email} />}
             ></Route>
             <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
-            <Route path="/edit-menu" element={<EditMenu />}></Route>
+            <Route path="/edit-menu" element={<EditMenu menu={menu}/>}></Route>
             <Route path="/view-order/:id" element={<ViewOrder/>}></Route>
           </Routes>
         </main>
