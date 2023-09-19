@@ -13,7 +13,7 @@ export default function CheckoutForm(props) {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
-  const { cart, address, email } = props;
+  const { cart, address, email, setCart, setAddress, setEmail } = props;
   let items;
 
   const handleSubmit = async (e) => {
@@ -62,6 +62,9 @@ export default function CheckoutForm(props) {
       .then((res) => res.json())
       .then((res) => {
         const resObj = JSON.parse(res)
+        setAddress("");
+        setCart([]);
+        setEmail("");
         navigate(`/view-order/${resObj._id}`)
       })
     }

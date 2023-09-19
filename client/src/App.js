@@ -127,11 +127,23 @@ function App() {
             <Route path="/contact" element={<Contact />}></Route>
             <Route
               path="/payment"
-              element={<Payment cart={cart} address={address} email={email} />}
+              element={
+                <Payment
+                  cart={cart}
+                  setCart={setCart}
+                  address={address}
+                  setAddress={setAddress}
+                  email={email}
+                  setEmail={setEmail}
+                />
+              }
             ></Route>
             <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
-            <Route path="/edit-menu" element={<EditMenu menu={menu} setMenu={setMenu}/>}></Route>
-            <Route path="/view-order/:id" element={<ViewOrder/>}></Route>
+            <Route
+              path="/edit-menu"
+              element={<EditMenu menu={menu} setMenu={setMenu} />}
+            ></Route>
+            <Route path="/view-order/:id" element={<ViewOrder />}></Route>
           </Routes>
         </main>
       </Router>

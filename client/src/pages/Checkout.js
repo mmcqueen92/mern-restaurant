@@ -2,13 +2,7 @@ import CartList from "../components/CartList";
 import { NavLink } from "react-router-dom";
 
 export default function Checkout(props) {
-  const cart = props.cart;
-  const addToCart = props.addToCart;
-  const reduceQuantity = props.reduceQuantity;
-  const address = props.address;
-  const handleAddress = props.handleAddress;
-  const email = props.email;
-  const handleEmail = props.handleEmail;
+  const {cart, addToCart, reduceQuantity, address, handleAddress, email, handleEmail } = props;
 
   return (
     <div>
