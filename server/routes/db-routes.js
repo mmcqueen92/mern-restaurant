@@ -57,6 +57,27 @@ router.get("/find-order/:id", (req, res, next) => {
   })
 })
 
+router.get("/paid-orders", (req, res, next) => {
+  Order.find({status: "paid"})
+  .then((data) => {
+    res.json(data)
+  })
+})
+
+router.get("/in-progress-orders", (req, res, next) => {
+  Order.find({status: "in-progress"})
+  .then((data) => {
+    res.json(data)
+  })
+})
+
+router.get("/en-route-orders", (req, res, next) => {
+  Order.find({status: "en-route"})
+  .then((data) => {
+    res.json(data)
+  })
+})
+
 // GET request to enable an item by item._id (req.params.id)
 router.get("/enable-item/:id", (req, res, next) => {
   const itemId = req.params.id;

@@ -8,7 +8,7 @@ export default function Navbar() {
       <NavLink to="/menu">Menu </NavLink>
       <NavLink to="/about">About </NavLink>
       <NavLink to="/contact">Contact </NavLink>
-      <NavLink to="/edit-menu">Edit-Menu </NavLink>
+      <NavLink to="/admin/edit-menu">Edit-Menu </NavLink>
       <div>Login/Profile placeholder</div>
     </div>
   );

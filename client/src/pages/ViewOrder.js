@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 export default function ViewOrder(props) {
   const { id } = useParams();
   const [orderInfo, setOrderInfo] = useState();
+  const MINUTE_MS = 60000;
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -13,7 +14,12 @@ export default function ViewOrder(props) {
       const data = await response.json();
       return data;
     };
-    fetchOrder().then((res) => setOrderInfo(res[0]));
+
+    const interval = setInterval(() => {
+      fetchOrder().then((res) => setOrderInfo(res[0]));
+    }, MINUTE_MS);
+  
+    return () => clearInterval(interval);
   }, [id]);
 
   return (

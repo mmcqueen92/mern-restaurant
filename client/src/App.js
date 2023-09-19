@@ -138,9 +138,9 @@ function App() {
                 />
               }
             ></Route>
-            <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
+            <Route path="/admin/dashboard" element={<AdminDashboard />}></Route>
             <Route
-              path="/edit-menu"
+              path="/admin/edit-menu"
               element={<EditMenu menu={menu} setMenu={setMenu} />}
             ></Route>
             <Route path="/view-order/:id" element={<ViewOrder />}></Route>
