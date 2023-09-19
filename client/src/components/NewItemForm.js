@@ -33,7 +33,10 @@ export default function NewItemForm(props) {
 
     const data = await newItem.json();
 
-    setMenu((prev) => {return [...prev, data]})
+    setMenu((prev) => {return [...prev, data]});
+    setName("");
+    setDescription("");
+    setPrice(0);
   };
 
   return (
