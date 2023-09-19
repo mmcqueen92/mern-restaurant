@@ -1,0 +1,18 @@
+import InProgressOrderListItem from "./InProgressOrdersListItem";
+
+export default function InProgressOrdersList(props) {
+  const { orders } = props;
+  let orderComponents;
+  if (orders) {
+    orderComponents = orders.map((order, i) => (
+      <InProgressOrderListItem order={order} key={i}/>
+    ));
+  }
+  return (
+    <div>
+      In Progress Orders List
+      <br />
+      {orderComponents}
+    </div>
+  );
+}

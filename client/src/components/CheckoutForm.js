@@ -43,6 +43,7 @@ export default function CheckoutForm(props) {
       // parse cart for create-order
       items = cart.map((item) => {
         return {
+          name: item.name,
           itemId: item._id,
           quantity: item.quantity,
         };
