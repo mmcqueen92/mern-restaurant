@@ -4,8 +4,8 @@ export default function PaidOrderListItem(props) {
   const {order, updateOrderStatus} = props;
   let items;
   if (order.items) {
-    items = order.items.map((item) => {
-      return <OrderItem item={item} />;
+    items = order.items.map((item, i) => {
+      return <OrderItem item={item} key={i}/>;
     });
   }
 

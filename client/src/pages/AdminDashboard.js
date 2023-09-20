@@ -32,17 +32,6 @@ export default function AdminDashboard(props) {
     console.log("Orders?: ", activeOrders);
   }, [activeOrders]);
 
-  const updateActiveOrders = (updatedOrder) => {
-    let newState = activeOrders.map((order) => {
-      if (order._id === updatedOrder._id) {
-        return updatedOrder;
-      } else {
-        return order;
-      }
-    })
-    setActiveOrders(newState)
-  }
-
   const updateOrderStatus = async (orderId, updatedStatus) => {
     fetch("http://localhost:5050/api/update-order-status", {
       method: "POST",
