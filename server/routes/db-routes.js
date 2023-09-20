@@ -64,6 +64,12 @@ router.get("/paid-orders", (req, res, next) => {
   })
 })
 
+router.post("/update-order-status", (req, res, next) => {
+  const {orderId, updatedStatus} = req.body;
+  Order.findOneAndUpdate({_id: orderId}, {status: updatedStatus}, {new: true})
+  .then((data)  => res.json(data))
+} )
+
 router.get("/in-progress-orders", (req, res, next) => {
   Order.find({status: "in-progress"})
   .then((data) => {
