@@ -12,6 +12,7 @@ export default function Payment(props) {
   for (let item of cart) {
     itemTotal += item.price * item.quantity;
   }
+  itemTotal *= 100
 
   useEffect(() => {
     fetch("http://localhost:5050/config").then(async (r) => {
@@ -26,11 +27,12 @@ export default function Payment(props) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ itemTotal: itemTotal }),
+
     }).then(async (r) => {
       const { clientSecret } = await r.json();
 
       setClientSecret(clientSecret);
-    });
+    }).catch((err) => console.log(err))
   }, [itemTotal]);
 
   return (

@@ -14,9 +14,12 @@ export default function ViewOrder(props) {
       const data = await response.json();
       return data;
     };
-
+    fetchOrder().then((res) => setOrderInfo(res[0]))
     const interval = setInterval(() => {
-      fetchOrder().then((res) => setOrderInfo(res[0]));
+      fetchOrder().then((res) => {
+        console.log("RES: ", res)
+        setOrderInfo(res[0])
+      });
     }, MINUTE_MS);
   
     return () => clearInterval(interval);
