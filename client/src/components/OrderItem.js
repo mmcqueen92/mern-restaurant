@@ -4,6 +4,8 @@ export default function OrderItem(props) {
     <div>
       <h5>1 item!</h5>
       {item.itemId}
+      {item.name}
+      x{item.quantity}
     </div>
   );
 }

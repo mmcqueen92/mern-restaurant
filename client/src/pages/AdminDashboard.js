@@ -76,9 +76,9 @@ export default function AdminDashboard(props) {
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      <PaidOrdersList orders={activeOrders.paid} activeOrders={activeOrders} setActiveOrders={setActiveOrders} updateActiveOrders={updateActiveOrders} updateOrderStatus={updateOrderStatus}/>
-      <InProgressOrdersList orders={activeOrders.inProgress} activeOrders={activeOrders} setActiveOrders={setActiveOrders}/>
-      <EnRouteOrdersList orders={activeOrders.enRoute} activeOrders={activeOrders} setActiveOrders={setActiveOrders}/>
+      <PaidOrdersList orders={activeOrders.paid} updateOrderStatus={updateOrderStatus}/>
+      <InProgressOrdersList orders={activeOrders.inProgress} updateOrderStatus={updateOrderStatus}/>
+      <EnRouteOrdersList orders={activeOrders.enRoute} updateOrderStatus={updateOrderStatus}/>
     </div>
   );
 }

@@ -57,6 +57,14 @@ router.get("/find-order/:id", (req, res, next) => {
   })
 })
 
+// POST request to update an orders status (from req.body)
+router.post("/update-order-status", (req, res, next) => {
+  const {orderId, updatedStatus} = req.body;
+  Order.findOneAndUpdate({_id: orderId}, {status: updatedStatus}, {new: true})
+  .then((data)  => res.json(data))
+} )
+
+// GET request to fetch paid orders
 router.get("/paid-orders", (req, res, next) => {
   Order.find({status: "paid"})
   .then((data) => {
@@ -64,12 +72,7 @@ router.get("/paid-orders", (req, res, next) => {
   })
 })
 
-router.post("/update-order-status", (req, res, next) => {
-  const {orderId, updatedStatus} = req.body;
-  Order.findOneAndUpdate({_id: orderId}, {status: updatedStatus}, {new: true})
-  .then((data)  => res.json(data))
-} )
-
+// GET request to fetch in-progress orders
 router.get("/in-progress-orders", (req, res, next) => {
   Order.find({status: "in-progress"})
   .then((data) => {
@@ -77,6 +80,7 @@ router.get("/in-progress-orders", (req, res, next) => {
   })
 })
 
+// GET request to fetch en-route orders
 router.get("/en-route-orders", (req, res, next) => {
   Order.find({status: "en-route"})
   .then((data) => {

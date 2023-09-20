@@ -1,7 +1,7 @@
 import OrderItem from "./OrderItem";
 
 export default function PaidOrderListItem(props) {
-  const {order, updateActiveOrders, updateOrderStatus} = props;
+  const {order, updateOrderStatus} = props;
   let items;
   if (order.items) {
     items = order.items.map((item) => {
@@ -11,7 +11,7 @@ export default function PaidOrderListItem(props) {
 
   return (
     <div>
-      <h4>Single Paid Order</h4>
+      <h4>Paid Order</h4>
       <p>Items:</p>
       <br />
       {items}
