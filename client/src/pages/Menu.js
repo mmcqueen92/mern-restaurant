@@ -1,25 +1,33 @@
-import MenuListItem from "../components/MenuListItem";
 import Cart from "../components/Cart";
+import MenuCategory from "../components/MenuCategory";
 
 export default function Menu(props) {
-  const menuItems = props.menuItems;
+  const menu = props.menu;
   const addToCart = props.addToCart;
   const reduceQuantity = props.reduceQuantity;
   const cart = props.cart;
 
-  const menuComponents = menuItems.map((item, i) => {
-    if (item.isActive === true) {
-      return (
-        <MenuListItem item={item} key={i} addToCart={addToCart}></MenuListItem>
-      );
+  let sortedMenu = {};
+  for (let item of menu) {
+    console.log("ITEM: ", item)
+    if (sortedMenu[item.category] === undefined) {
+      sortedMenu[item.category] = [item]
+    } else {
+      sortedMenu[item.category].push(item)
     }
-  });
+  }
+  let categories = [];
+  for (const [key, value] of Object.entries(sortedMenu)) {
+    const category = <MenuCategory name={key} items={value} addToCart={addToCart}/>
+    categories.push(category)
+  }
+
   return (
     <div>
       This is the Menu:
       <br />
       <br />
-      {menuComponents}
+      {categories}
       <br />
       This is your order:
       <br />

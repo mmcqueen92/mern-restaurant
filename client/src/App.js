@@ -102,7 +102,7 @@ function App() {
               path="/menu"
               element={
                 <Menu
-                  menuItems={menu}
+                  menu={menu}
                   addToCart={addToCart}
                   reduceQuantity={reduceQuantity}
                   cart={cart}
