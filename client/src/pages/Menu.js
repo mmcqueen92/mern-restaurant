@@ -9,7 +9,6 @@ export default function Menu(props) {
 
   let sortedMenu = {};
   for (let item of menu) {
-    console.log("ITEM: ", item)
     if (sortedMenu[item.category] === undefined) {
       sortedMenu[item.category] = [item]
     } else {
@@ -18,7 +17,7 @@ export default function Menu(props) {
   }
   let categories = [];
   for (const [key, value] of Object.entries(sortedMenu)) {
-    const category = <MenuCategory name={key} items={value} addToCart={addToCart}/>
+    const category = <MenuCategory name={key} items={value} addToCart={addToCart} key={categories.length + 1}/>
     categories.push(category)
   }
 

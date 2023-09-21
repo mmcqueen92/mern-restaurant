@@ -41,6 +41,20 @@ router.post("/create-item", (req, res, next) => {
     .catch(next);
 })
 
+// POST request to edit item
+router.post("/edit-item", (req, res, next) => {
+  const {id, name, description, price, category} = req.body;
+  Item.findOneAndUpdate({_id: id}, {name, description, price, category}, {new: true})
+  .then((data) => res.json(data))
+})
+
+// POST request to update an orders status (from req.body)
+router.post("/update-order-status", (req, res, next) => {
+  const {orderId, updatedStatus} = req.body;
+  Order.findOneAndUpdate({_id: orderId}, {status: updatedStatus}, {new: true})
+  .then((data)  => res.json(data))
+} )
+
 // POST request to delete item
 router.post("/delete-item", (req, res, next) => {
   const {itemId} = req.body;
@@ -65,13 +79,6 @@ router.get("/find-order/:id", (req, res, next) => {
     res.json(data);
   })
 })
-
-// POST request to update an orders status (from req.body)
-router.post("/update-order-status", (req, res, next) => {
-  const {orderId, updatedStatus} = req.body;
-  Order.findOneAndUpdate({_id: orderId}, {status: updatedStatus}, {new: true})
-  .then((data)  => res.json(data))
-} )
 
 // GET request to fetch paid orders
 router.get("/paid-orders", (req, res, next) => {
