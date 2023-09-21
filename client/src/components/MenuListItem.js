@@ -10,10 +10,10 @@ export default function MenuListItem(props) {
         <div>
             Food name: {name}<br/>
             Food price: ${price}<br/>
-            Food description: {description}<br/><br/>
+            Food description: {description}<br/>
             <button onClick={() => {
                 addToCart(item)
-                }}>Add to Cart</button>
+                }}>Add to Cart</button><br/><br/>
         </div>
     )
 }

@@ -13,6 +13,7 @@ export default function Payment(props) {
     itemTotal += item.price * item.quantity;
   }
   itemTotal *= 100
+  itemTotal = Math.round(itemTotal)
 
   useEffect(() => {
     fetch("http://localhost:5050/config").then(async (r) => {

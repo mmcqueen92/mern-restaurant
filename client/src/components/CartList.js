@@ -20,10 +20,15 @@ export default function CartList(props) {
           addToCart={addToCart}
           reduceQuantity={reduceQuantity}
         ></CartListItem>
-        Total: ${total}
       </div>
     );
   });
 
-  return <div>{cartComponents}</div>;
+  return (
+    <div>
+      {cartComponents}
+      <br />
+      Total: ${total.toFixed(2)}
+    </div>
+  );
 }
