@@ -14,6 +14,10 @@ const ItemSchema = new Schema({
     type: String,
     required: [true, "The description field is required"],
   },
+  category: {
+    type: String,
+    required: [true, "The category field is required"],
+  },
   image: {
     type: String,
     required: false,

@@ -5,6 +5,7 @@ export default function NewItemForm(props) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState("");
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -18,6 +19,10 @@ export default function NewItemForm(props) {
     setPrice(event.target.value);
   };
 
+  const handleCategory = (event) => {
+    setCategory(event.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,6 +33,7 @@ export default function NewItemForm(props) {
         name,
         description,
         price,
+        category,
       }),
     })
 
@@ -37,6 +43,7 @@ export default function NewItemForm(props) {
     setName("");
     setDescription("");
     setPrice(0);
+    setCategory("")
   };
 
   return (
@@ -55,6 +62,13 @@ export default function NewItemForm(props) {
           placeholder="Enter item description"
           onChange={handleDescription}
           value={description}
+        ></input>
+
+        <input
+          type="text"
+          placeholder="Enter a category"
+          onChange={handleCategory}
+          value={category}
         ></input>
 
         <input type="number" onChange={handlePrice} value={price}></input>

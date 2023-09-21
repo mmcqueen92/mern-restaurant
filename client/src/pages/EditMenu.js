@@ -34,11 +34,23 @@ export default function EditMenu(props) {
     setMenu(newState)
   }
 
+  const deleteItem = async (itemId) => {
+    await fetch(`http://localhost:5050/api/delete-item`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        itemId
+      })
+    })
+    const newMenu = menu.filter((item) => item._id !== itemId);
+    setMenu(newMenu);
+  }
+
   return (
     <div>
       <h1>Edit Menu</h1>
       <NewItemForm setMenu={setMenu}/><br/>
-      <EditMenuList menu={menu} enableItem={enableItem} disableItem={disableItem}/>
+      <EditMenuList menu={menu} enableItem={enableItem} disableItem={disableItem} deleteItem={deleteItem}/>
     </div>
   );
 }

@@ -30,14 +30,23 @@ router.post("/create-order", (req, res, next) => {
 
 // POST request to create new item
 router.post("/create-item", (req, res, next) => {
-  const {name, description, price} = req.body;
+  const {name, description, price, category} = req.body;
   Item.create({
     name,
     price,
     description,
+    category,
   })
     .then((data) => res.json(data))
     .catch(next);
+})
+
+// POST request to delete item
+router.post("/delete-item", (req, res, next) => {
+  const {itemId} = req.body;
+  Item.deleteOne({_id: itemId})
+  .then((data) => res.json(data))
+  .catch(next);
 })
 
 // GET request to fetch active menu items
