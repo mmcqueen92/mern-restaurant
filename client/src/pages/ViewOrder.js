@@ -9,18 +9,19 @@ export default function ViewOrder(props) {
   useEffect(() => {
     const fetchOrder = async () => {
       const response = await fetch(
-        `http://localhost:5050/api/find-order/${id}`
+        `http://localhost:5050/api/find-order/${id}`,
+        { mode: "cors" }
       );
       const data = await response.json();
       return data;
     };
-    fetchOrder().then((res) => setOrderInfo(res[0]))
+    fetchOrder().then((res) => setOrderInfo(res[0]));
     const interval = setInterval(() => {
       fetchOrder().then((res) => {
-        setOrderInfo(res[0])
+        setOrderInfo(res[0]);
       });
     }, MINUTE_MS);
-  
+
     return () => clearInterval(interval);
   }, [id]);
 

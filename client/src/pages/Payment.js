@@ -16,7 +16,7 @@ export default function Payment(props) {
   itemTotal = Math.round(itemTotal)
 
   useEffect(() => {
-    fetch("http://localhost:5050/config").then(async (r) => {
+    fetch("http://localhost:5050/config", {mode: 'cors'}).then(async (r) => {
       const { publishableKey } = await r.json();
 
       setStripePromise(loadStripe(publishableKey));
@@ -26,6 +26,7 @@ export default function Payment(props) {
   useEffect(() => {
     fetch("http://localhost:5050/create-payment-intent", {
       method: "POST",
+      mode: 'cors',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ itemTotal: itemTotal }),
 

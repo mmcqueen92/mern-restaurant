@@ -5,7 +5,7 @@ export default function EditMenu(props) {
   const {menu, setMenu} = props;
 
   const enableItem = async (itemId) => {
-    const sendReq = await fetch(`http://localhost:5050/api/enable-item/${itemId}`);
+    const sendReq = await fetch(`http://localhost:5050/api/enable-item/${itemId}`, {mode: 'cors'});
     const data = await sendReq.json();
 
     const newState = menu.map((item) => {
@@ -20,7 +20,7 @@ export default function EditMenu(props) {
   }
 
   const disableItem = async (itemId) => {
-    const sendReq = await fetch(`http://localhost:5050/api/disable-item/${itemId}`);
+    const sendReq = await fetch(`http://localhost:5050/api/disable-item/${itemId}`, {mode: 'cors'});
     const data = await sendReq.json();
 
     const newState = menu.map((item) => {
@@ -37,6 +37,7 @@ export default function EditMenu(props) {
   const deleteItem = async (itemId) => {
     await fetch(`http://localhost:5050/api/delete-item`, {
       method: "POST",
+      mode: 'cors',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         itemId
@@ -50,7 +51,7 @@ export default function EditMenu(props) {
     <div>
       <h1>Edit Menu</h1>
       <NewItemForm setMenu={setMenu}/><br/>
-      <EditMenuList menu={menu} enableItem={enableItem} disableItem={disableItem} deleteItem={deleteItem}/>
+      <EditMenuList menu={menu} setMenu={setMenu} enableItem={enableItem} disableItem={disableItem} deleteItem={deleteItem}/>
     </div>
   );
 }

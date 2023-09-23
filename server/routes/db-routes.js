@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Order = require("../models/orderSchema");
 const Item = require("../models/itemSchema");
+const User = require("../models/userSchema");
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcryptjs');
 
 // POST request to create new order
 router.post("/create-order", (req, res, next) => {
@@ -16,7 +19,6 @@ router.post("/create-order", (req, res, next) => {
       })
       order = JSON.stringify(order)
       res.status(201).json(order)
-      // res.redirect(`http://localhost:3000/view-order/${order._id}`)
 
     } catch(e) {
       res.status(500).json({
@@ -63,7 +65,7 @@ router.post("/delete-item", (req, res, next) => {
   .catch(next);
 })
 
-// GET request to fetch active menu items
+// GET request to fetch all menu items
 router.get("/menu", (req, res, next) => {
   Item.find({})
   .then((data) => {
@@ -116,6 +118,53 @@ router.get("/disable-item/:id", (req, res, next) => {
   const itemId = req.params.id;
   Item.findOneAndUpdate({_id: itemId}, {isActive: false}, {new: true})
   .then((data)  => res.json(data))
+})
+
+// POST request to create new user
+router.post("/create-new-user", async (req, res, next) => {
+  const {email, password} = req.body;
+
+  const userWithEmail = await User.findOne({email: email})
+
+  if (userWithEmail) {
+    return res.status(400).json({status: "error", message: "A user with that email already exists"})
+  } else if (!userWithEmail) {
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    User.create({
+      email,
+      hashedPassword
+    })
+    .then((data) => {
+      const jwtToken = jwt.sign({
+        id: data._id, email: data.email
+      }, process.env.JWT_SECRET)
+      const user = {
+        email: data.email,
+        addresses: data.addresses,
+        defaultAddress: data.defaultAddress
+      }
+      res.json({status: "ok", message: "User created successfully", token: jwtToken, user: user })
+    })
+    .catch(next);
+  }
+})
+
+// POST request to login
+router.post("/login", async (req, res, next) => {
+  const {email, password} = req.body;
+
+  const userWithEmail = await User.findOne({email: email}).catch((e) => console.log("ERROR: ", e))
+
+  if (!userWithEmail) {
+    return res.status(400).json({message: "Email or password does not match"});
+  } else if (!bcrypt.compareSync(password, userWithEmail.hashedPassword)) {
+    return res.status(400).json({message: "Email or password does not match"});
+  } else if (bcrypt.compareSync(password, userWithEmail.hashedPassword)) {
+    const jwtToken = jwt.sign({
+      id: userWithEmail._id, email: userWithEmail.email
+    }, process.env.JWT_SECRET)
+    res.json({status:"ok", message: "Sign in successful", token: jwtToken})
+  }
 })
 
 module.exports = router;

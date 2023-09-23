@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function EditItemForm(props) {
-  const { item, setEditItem } = props;
+  const { item, setEditItem, menu, setMenu } = props;
   const [newName, setNewName] = useState(item.name);
   const [newDescription, setNewDescription] = useState(item.description);
   const [newCategory, setNewCategory] = useState(item.category);
@@ -25,7 +25,6 @@ export default function EditItemForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("SUBMIT EDITED ITEM");
 
     const editedItem = await fetch("http://localhost:5050/api/edit-item", {
       method: "POST",
@@ -40,7 +39,17 @@ export default function EditItemForm(props) {
     });
 
     const data = await editedItem.json();
-    console.log("DATA: ", data)
+
+    const newMenu = menu.map((item) => {
+      if (item._id === data._id) {
+        return data;
+      } else {
+        return item;
+      }
+    })
+
+    setMenu(newMenu)
+    setEditItem(false)
   };
 
   const discardChanges = () => {

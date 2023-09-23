@@ -11,27 +11,36 @@ import Payment from "./pages/Payment";
 import AdminDashboard from "./pages/AdminDashboard";
 import EditMenu from "./pages/EditMenu";
 import ViewOrder from "./pages/ViewOrder";
+import Login from "./pages/Login";
+import CreateNewUser from "./pages/CreateNewUser";
 
 function App() {
   const initialCart = useMemo(() => [], []);
+  const [user, setUser] = useState(null);
   const [cart, setCart] = useState(initialCart);
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [menu, setMenu] = useState([]);
 
   const fetchMenu = async () => {
-    const response = await fetch("http://localhost:5050/api/menu");
+    const response = await fetch("http://localhost:5050/api/menu", {mode: 'cors'});
     const data = await response.json();
     return data;
   };
 
   useEffect(() => {
-    // on render check for cart in local storage, if it is NOT null (it exists) set cart(state) to match the cart in local storage
+    // on render check for cart and user in local storage, if it is NOT null (it exists) set cart(state) to match the cart in local storage
     const cartFromLocalStorage = window.localStorage.getItem(
       "mern_restaurant_cart"
     );
     const parsedCartFromLocalStorage = JSON.parse(cartFromLocalStorage);
     if (cartFromLocalStorage !== null) setCart(parsedCartFromLocalStorage);
+
+    const userFromLocalStorage = window.localStorage.getItem(
+      "mern_restaurant_user"
+    );
+    const parsedUserFromLocalStorage = JSON.parse(userFromLocalStorage);
+    if (userFromLocalStorage !== null) setUser(parsedUserFromLocalStorage);
     // fetch menu
     fetchMenu().then((res) => setMenu(res));
   }, []);
@@ -42,6 +51,11 @@ function App() {
       localStorage.setItem("mern_restaurant_cart", JSON.stringify(cart));
     }
   }, [cart, initialCart]);
+
+  // for testing purposes when necessary
+  useEffect(() => {
+    // console.log("MENU: ", menu)
+  }, [menu])
 
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
@@ -144,6 +158,8 @@ function App() {
               element={<EditMenu menu={menu} setMenu={setMenu} />}
             ></Route>
             <Route path="/view-order/:id" element={<ViewOrder />}></Route>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<CreateNewUser/>}/>
           </Routes>
         </main>
       </Router>

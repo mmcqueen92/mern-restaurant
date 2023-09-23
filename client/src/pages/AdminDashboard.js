@@ -7,18 +7,17 @@ export default function AdminDashboard(props) {
   const [activeOrders, setActiveOrders] = useState({});
 
   const fetchOrders = async () => {
-    console.log("Fetching orders!");
     let data = {};
 
-    const paid = await fetch("http://localhost:5050/api/paid-orders");
+    const paid = await fetch("http://localhost:5050/api/paid-orders", {mode: 'cors'});
     data.paid = await paid.json();
 
     const inProgress = await fetch(
-      "http://localhost:5050/api/in-progress-orders"
+      "http://localhost:5050/api/in-progress-orders", {mode: 'cors'}
     );
     data.inProgress = await inProgress.json();
 
-    const enRoute = await fetch("http://localhost:5050/api/en-route-orders");
+    const enRoute = await fetch("http://localhost:5050/api/en-route-orders", {mode: 'cors'});
     data.enRoute = await enRoute.json();
 
     return data;
@@ -35,6 +34,7 @@ export default function AdminDashboard(props) {
   const updateOrderStatus = async (orderId, updatedStatus) => {
     fetch("http://localhost:5050/api/update-order-status", {
       method: "POST",
+      mode: 'cors',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         orderId: orderId,
