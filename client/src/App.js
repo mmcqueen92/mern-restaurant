@@ -52,6 +52,10 @@ function App() {
     }
   }, [cart, initialCart]);
 
+  // useEffect(() => {
+  //   localStorage.setItem("mern_restaurant_user", JSON.stringify(user))
+  // }, [user])
+
   // for testing purposes when necessary
   useEffect(() => {
     // console.log("MENU: ", menu)

@@ -12,8 +12,27 @@ export default function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     console.log("LOGIN HANDLESUBMIT");
+
+    const loginAttempt = await fetch("http://localhost:5050/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await loginAttempt.json();
+
+    if (data.status === "ok") {
+      setEmail("");
+      setPassword("");
+      localStorage.setItem("jwt_token", JSON.stringify(data.token))
+      localStorage.setItem("mern_restaurant_user", JSON.stringify(data.user))
+    }
   };
 
   return (
@@ -33,6 +52,8 @@ export default function LoginForm() {
           onChange={handlePassword}
           value={password}
         ></input>
+
+        <button type="submit">Login</button>
       </form>
     </div>
   );
