@@ -23,7 +23,9 @@ function App() {
   const [menu, setMenu] = useState([]);
 
   const fetchMenu = async () => {
-    const response = await fetch("http://localhost:5050/api/menu", {mode: 'cors'});
+    const response = await fetch("http://localhost:5050/api/menu", {
+      mode: "cors",
+    });
     const data = await response.json();
     return data;
   };
@@ -52,14 +54,16 @@ function App() {
     }
   }, [cart, initialCart]);
 
-  // useEffect(() => {
-  //   localStorage.setItem("mern_restaurant_user", JSON.stringify(user))
-  // }, [user])
+  useEffect(() => {
+    if (user !== null) {
+      localStorage.setItem("mern_restaurant_user", JSON.stringify(user));
+    }
+  }, [user]);
 
   // for testing purposes when necessary
   useEffect(() => {
     // console.log("MENU: ", menu)
-  }, [menu])
+  }, [menu]);
 
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
@@ -162,8 +166,8 @@ function App() {
               element={<EditMenu menu={menu} setMenu={setMenu} />}
             ></Route>
             <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<CreateNewUser/>}/>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<CreateNewUser />} />
           </Routes>
         </main>
       </Router>
