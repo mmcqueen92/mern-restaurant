@@ -27,9 +27,10 @@ export default function AdminDashboard(props) {
     fetchOrders().then((res) => setActiveOrders(res));
   }, []);
 
-  useEffect(() => {
-    console.log("Orders?: ", activeOrders);
-  }, [activeOrders]);
+  // for testing purposes
+  // useEffect(() => {
+  //   console.log("Orders?: ", activeOrders);
+  // }, [activeOrders]);
 
   const updateOrderStatus = async (orderId, updatedStatus) => {
     fetch("http://localhost:5050/api/update-order-status", {

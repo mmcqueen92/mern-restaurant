@@ -52,7 +52,7 @@ export default function CreateNewUserForm() {
         ></input>
 
         <input
-          type="text"
+          type="password"
           placeholder="Enter a password"
           onChange={handlePassword}
           value={password}

@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm(props) {
   const { setUser } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -23,8 +25,9 @@ export default function LoginForm(props) {
         email,
         password,
       }),
+    }).catch((e) => {
+      alert("ERROR: ", e);
     });
-
     const data = await loginAttempt.json();
 
     if (data.status === "ok") {
@@ -33,6 +36,9 @@ export default function LoginForm(props) {
       setPassword("");
       localStorage.setItem("jwt_token", JSON.stringify(data.token));
       localStorage.setItem("mern_restaurant_user", JSON.stringify(data.user));
+      navigate("/");
+    } else {
+        alert("Email or password does not match")
     }
   };
 
@@ -48,7 +54,7 @@ export default function LoginForm(props) {
         ></input>
 
         <input
-          type="text"
+          type="password"
           placeholder="Enter your password"
           onChange={handlePassword}
           value={password}

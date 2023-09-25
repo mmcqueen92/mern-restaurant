@@ -158,9 +158,9 @@ router.post("/login", async (req, res, next) => {
   const userWithEmail = await User.findOne({email: email}).catch((e) => console.log("ERROR: ", e))
 
   if (!userWithEmail) {
-    return res.status(400).json({message: "Email or password does not match"});
+    return res.status(401).json({message: "Email or password does not match"});
   } else if (!bcrypt.compareSync(password, userWithEmail.hashedPassword)) {
-    return res.status(400).json({message: "Email or password does not match"});
+    return res.status(401).json({message: "Email or password does not match"});
   } else if (bcrypt.compareSync(password, userWithEmail.hashedPassword)) {
     const jwtToken = jwt.sign({
       id: userWithEmail._id, email: userWithEmail.email
