@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+  const { setUser } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,7 +15,6 @@ export default function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("LOGIN HANDLESUBMIT");
 
     const loginAttempt = await fetch("http://localhost:5050/api/login", {
       method: "POST",
@@ -28,10 +28,11 @@ export default function LoginForm() {
     const data = await loginAttempt.json();
 
     if (data.status === "ok") {
+      setUser(data.user);
       setEmail("");
       setPassword("");
-      localStorage.setItem("jwt_token", JSON.stringify(data.token))
-      localStorage.setItem("mern_restaurant_user", JSON.stringify(data.user))
+      localStorage.setItem("jwt_token", JSON.stringify(data.token));
+      localStorage.setItem("mern_restaurant_user", JSON.stringify(data.user));
     }
   };
 

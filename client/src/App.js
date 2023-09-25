@@ -65,6 +65,11 @@ function App() {
     // console.log("MENU: ", menu)
   }, [menu]);
 
+  const logOut = () => {
+    setUser(null);
+    localStorage.setItem("mern_restaurant_user", null);
+  };
+
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
   const addToCart = (item) => {
     const itemIndex = cart.findIndex((i) => i._id === item._id);
@@ -113,66 +118,186 @@ function App() {
     setEmail(event.target.value);
   };
 
-  return (
-    <div className="App">
-      <Router>
-        <Navbar></Navbar>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route
-              path="/menu"
-              element={
-                <Menu
-                  menu={menu}
-                  addToCart={addToCart}
-                  reduceQuantity={reduceQuantity}
-                  cart={cart}
-                />
-              }
-            ></Route>
-            <Route
-              path="/checkout"
-              element={
-                <Checkout
-                  addToCart={addToCart}
-                  reduceQuantity={reduceQuantity}
-                  cart={cart}
-                  address={address}
-                  email={email}
-                  handleAddress={handleAddress}
-                  handleEmail={handleEmail}
-                />
-              }
-            ></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
-            <Route
-              path="/payment"
-              element={
-                <Payment
-                  cart={cart}
-                  setCart={setCart}
-                  address={address}
-                  setAddress={setAddress}
-                  email={email}
-                  setEmail={setEmail}
-                />
-              }
-            ></Route>
-            <Route path="/admin/dashboard" element={<AdminDashboard />}></Route>
-            <Route
-              path="/admin/edit-menu"
-              element={<EditMenu menu={menu} setMenu={setMenu} />}
-            ></Route>
-            <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<CreateNewUser />} />
-          </Routes>
-        </main>
-      </Router>
-    </div>
-  );
+  if (user && user.isAdmin) {
+    // EVERYTHING OPTION FOR ADMIN
+    return (
+      <div className="App">
+        <Router>
+          <Navbar logOut={logOut} user={user}></Navbar>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/menu"
+                element={
+                  <Menu
+                    menu={menu}
+                    addToCart={addToCart}
+                    reduceQuantity={reduceQuantity}
+                    cart={cart}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/checkout"
+                element={
+                  <Checkout
+                    addToCart={addToCart}
+                    reduceQuantity={reduceQuantity}
+                    cart={cart}
+                    address={address}
+                    email={email}
+                    handleAddress={handleAddress}
+                    handleEmail={handleEmail}
+                  />
+                }
+              ></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route
+                path="/payment"
+                element={
+                  <Payment
+                    cart={cart}
+                    setCart={setCart}
+                    address={address}
+                    setAddress={setAddress}
+                    email={email}
+                    setEmail={setEmail}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/admin/dashboard"
+                element={<AdminDashboard />}
+              ></Route>
+              <Route
+                path="/admin/edit-menu"
+                element={<EditMenu menu={menu} setMenu={setMenu} />}
+              ></Route>
+              <Route path="/view-order/:id" element={<ViewOrder />}></Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<CreateNewUser />} />
+            </Routes>
+          </main>
+        </Router>
+      </div>
+    );
+  } else if (user && !user.isAdmin) {
+    // limited options for logged in NON admin user
+    // currently the same as not logged in at all, needs profile added
+    return (
+      <div className="App">
+        <Router>
+          <Navbar logOut={logOut} user={user}></Navbar>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/menu"
+                element={
+                  <Menu
+                    menu={menu}
+                    addToCart={addToCart}
+                    reduceQuantity={reduceQuantity}
+                    cart={cart}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/checkout"
+                element={
+                  <Checkout
+                    addToCart={addToCart}
+                    reduceQuantity={reduceQuantity}
+                    cart={cart}
+                    address={address}
+                    email={email}
+                    handleAddress={handleAddress}
+                    handleEmail={handleEmail}
+                  />
+                }
+              ></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route
+                path="/payment"
+                element={
+                  <Payment
+                    cart={cart}
+                    setCart={setCart}
+                    address={address}
+                    setAddress={setAddress}
+                    email={email}
+                    setEmail={setEmail}
+                  />
+                }
+              ></Route>
+              <Route path="/view-order/:id" element={<ViewOrder />}></Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<CreateNewUser />} />
+            </Routes>
+          </main>
+        </Router>
+      </div>
+    );
+  } else if (!user) {
+    return (
+      <div className="App">
+        <Router>
+          <Navbar logOut={logOut} user={user}></Navbar>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/menu"
+                element={
+                  <Menu
+                    menu={menu}
+                    addToCart={addToCart}
+                    reduceQuantity={reduceQuantity}
+                    cart={cart}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/checkout"
+                element={
+                  <Checkout
+                    addToCart={addToCart}
+                    reduceQuantity={reduceQuantity}
+                    cart={cart}
+                    address={address}
+                    email={email}
+                    handleAddress={handleAddress}
+                    handleEmail={handleEmail}
+                  />
+                }
+              ></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route
+                path="/payment"
+                element={
+                  <Payment
+                    cart={cart}
+                    setCart={setCart}
+                    address={address}
+                    setAddress={setAddress}
+                    email={email}
+                    setEmail={setEmail}
+                  />
+                }
+              ></Route>
+              <Route path="/view-order/:id" element={<ViewOrder />}></Route>
+              <Route path="/login" element={<Login setUser={setUser}/>} />
+              <Route path="/register" element={<CreateNewUser />} />
+            </Routes>
+          </main>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

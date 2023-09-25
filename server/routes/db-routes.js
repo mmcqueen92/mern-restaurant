@@ -132,7 +132,8 @@ router.post("/create-new-user", async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, 10);
     User.create({
       email,
-      hashedPassword
+      hashedPassword,
+      isAdmin: true,
     })
     .then((data) => {
       const jwtToken = jwt.sign({
@@ -141,7 +142,8 @@ router.post("/create-new-user", async (req, res, next) => {
       const user = {
         email: data.email,
         addresses: data.addresses,
-        defaultAddress: data.defaultAddress
+        defaultAddress: data.defaultAddress,
+        isAdmin: data.isAdmin
       }
       res.json({status: "ok", message: "User created successfully", token: jwtToken, user: user })
     })
@@ -166,7 +168,8 @@ router.post("/login", async (req, res, next) => {
     const user = {
       email: userWithEmail.email,
       addresses: userWithEmail.addresses,
-      defaultAddress: userWithEmail.defaultAddress
+      defaultAddress: userWithEmail.defaultAddress,
+      isAdmin: userWithEmail.isAdmin
     }
     res.json({status:"ok", message: "Sign in successful", token: jwtToken, user: user})
   }
