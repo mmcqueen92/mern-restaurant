@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import UserProfile from "../pages/UserProfile";
 
 export default function Navbar(props) {
   const { logOut, user } = props;
@@ -15,7 +16,12 @@ export default function Navbar(props) {
           <NavLink to="/register">Register </NavLink>
         </div>
       )}
-      {user && <button onClick={logOut}>Log Out</button>}
+      {user && (
+        <div>
+          <NavLink to="/user-profile" element={<UserProfile/>}>Profile</NavLink>
+          <button onClick={logOut}>Log Out</button>
+        </div>
+      )}
       <br />
       {user && user.isAdmin && (
         <div>

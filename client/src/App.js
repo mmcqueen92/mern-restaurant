@@ -13,6 +13,7 @@ import EditMenu from "./pages/EditMenu";
 import ViewOrder from "./pages/ViewOrder";
 import Login from "./pages/Login";
 import CreateNewUser from "./pages/CreateNewUser";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const initialCart = useMemo(() => [], []);
@@ -234,8 +235,7 @@ function App() {
                 }
               ></Route>
               <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<CreateNewUser />} />
+              <Route path="/user-profile" element={<UserProfile user={user}/>}/>
             </Routes>
           </main>
         </Router>
