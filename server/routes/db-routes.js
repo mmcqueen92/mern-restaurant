@@ -83,7 +83,7 @@ router.get("/menu", (req, res, next) => {
 // GET request to fetch an order by order._id (req.params.id)
 router.get("/find-order/:id", (req, res, next) => {
   const orderId = req.params.id;
-  Order.find({ _id: orderId }).then((data) => {
+  Order.findOne({ _id: orderId }).then((data) => {
     res.json(data);
   });
 });
@@ -162,6 +162,7 @@ router.post("/create-new-user", async (req, res, next) => {
           addresses: data.addresses,
           defaultAddress: data.defaultAddress,
           isAdmin: data.isAdmin,
+          _id: data._id
         };
         res.json({
           status: "ok",
@@ -203,6 +204,7 @@ router.post("/login", async (req, res, next) => {
       addresses: userWithEmail.addresses,
       defaultAddress: userWithEmail.defaultAddress,
       isAdmin: userWithEmail.isAdmin,
+      _id: userWithEmail._id
     };
     res.json({
       status: "ok",
@@ -251,5 +253,17 @@ router.post("/add-default-address", (req, res, next) => {
     res.json(updatedDefaultAddress);
   });
 });
+
+// GET request for users orders array
+router.get("/user-orders/:userId", async (req, res, next) => {
+  const userId = req.params.userId;
+  User.findOne({_id: userId})
+  .then((data) => {
+    const orders = data.orders
+    res.json(orders)
+  })
+  .catch((e) => console.log("ERROR: ", e)
+);
+})
 
 module.exports = router;
