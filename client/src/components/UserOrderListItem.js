@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import OrderItem from "./OrderItem";
 
 export default function UserOrderListItem(props) {
   const { orderId } = props;
@@ -19,9 +20,15 @@ export default function UserOrderListItem(props) {
     fetchOrderInfo().then((res) => setOrderInfo(res))
   }, []);
 
+  const orderItems = orderInfo.items.map((item, i) => {
+    return <OrderItem item={item} key={i}/>
+  })
+
   return (
     <div>
-      <h3>Single previous order</h3>
+      <h5>Single previous order</h5>
+      Items: <br/>
+      {orderItems}
     </div>
   );
 }
