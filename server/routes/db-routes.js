@@ -175,4 +175,14 @@ router.post("/login", async (req, res, next) => {
   }
 })
 
+router.post("/add-new-address", (req, res, next) => {
+  const {email, newAddress} = req.body;
+  User.findOneAndUpdate({email: email}, {$push: {addresses: newAddress}}, {new: true})
+  .then((data)  => {
+    const newAddresses = data.addresses
+    res.json(newAddresses)
+  })
+
+})
+
 module.exports = router;

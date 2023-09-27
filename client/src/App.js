@@ -235,7 +235,7 @@ function App() {
                 }
               ></Route>
               <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-              <Route path="/user-profile" element={<UserProfile user={user}/>}/>
+              <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>}/>
             </Routes>
           </main>
         </Router>
