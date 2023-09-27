@@ -194,4 +194,13 @@ router.post("/delete-address", (req, res, next) => {
   })
 })
 
+router.post("/add-default-address", (req, res, next) => {
+  const {email, newDefaultAddress} = req.body;
+  User.findOneAndUpdate({email: email}, {defaultAddress: newDefaultAddress}, {new: true})
+  .then((data) => {
+    const updatedDefaultAddress = data.defaultAddress
+    res.json(updatedDefaultAddress)
+  })
+})
+
 module.exports = router;

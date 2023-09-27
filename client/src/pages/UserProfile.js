@@ -25,11 +25,30 @@ export default function UserProfile(props) {
       });
   };
 
+  const handleMakeDefault = async (newDefaultAddress) => {
+    fetch("http://localhost:5050/api/add-default-address", {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: user.email,
+          newDefaultAddress
+        }),
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        setUser((prev) => {
+            return {...prev, defaultAddress: res}
+        })
+    })
+  }
+
   return (
     <div>
       <h3>User Profile</h3>
       <p>Email: {user.email}</p>
-      <AddressList user={user} setUser={setUser} addresses={user.addresses} handleDelete={handleDelete}/>
+      <p>Default Address: {user.defaultAddress}</p>
+      <AddressList user={user} setUser={setUser} addresses={user.addresses} handleDelete={handleDelete} handleMakeDefault={handleMakeDefault}/>
     </div>
   );
 }
