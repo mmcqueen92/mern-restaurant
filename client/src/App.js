@@ -58,6 +58,8 @@ function App() {
   useEffect(() => {
     if (user !== null) {
       localStorage.setItem("mern_restaurant_user", JSON.stringify(user));
+      setAddress(user.defaultAddress)
+      setEmail(user.email)
     }
   }, [user]);
 

@@ -10,15 +10,15 @@ export default function Checkout(props) {
       <form>
         <input
           type="text"
-          placeholder="Enter your address"
-          onChange={handleAddress}
-          value={address}
-        ></input>
-        <input
-          type="text"
           placeholder="Enter an email"
           onChange={handleEmail}
           value={email}
+        ></input>
+        <input
+          type="text"
+          placeholder="Enter your address"
+          onChange={handleAddress}
+          value={address}
         ></input>
       </form>
       <CartList
