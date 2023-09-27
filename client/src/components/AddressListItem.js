@@ -1,11 +1,11 @@
 export default function AddressListItem(props) {
-  const { address } = props;
+  const { address, handleDelete } = props;
 
   return (
     <div>
       {address}
       <button>Set Default</button>
-      <button>Delete</button>
+      <button onClick={() => handleDelete(address)}>Delete</button>
     </div>
   );
 }

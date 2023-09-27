@@ -2,10 +2,10 @@ import AddressListItem from "./AddressListItem";
 import NewAddressForm from "./NewAddressForm";
 
 export default function AddressList(props) {
-  const { user, setUser } = props;
+  const { user, setUser, addresses, handleDelete } = props;
 
-  const addressList = user.addresses.map((address, i) => {
-    return <AddressListItem address={address} key={i} user={user}/>;
+  const addressList = addresses.map((address, i) => {
+    return <AddressListItem address={address} key={i} handleDelete={handleDelete}/>;
   });
   return (
     <div>

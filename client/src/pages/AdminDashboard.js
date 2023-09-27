@@ -38,8 +38,8 @@ export default function AdminDashboard(props) {
       mode: 'cors',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        orderId: orderId,
-        updatedStatus: updatedStatus
+        orderId,
+        updatedStatus
       })
     })
     .then((res) => res.json())
