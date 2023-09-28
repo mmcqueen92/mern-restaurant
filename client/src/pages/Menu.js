@@ -23,14 +23,9 @@ export default function Menu(props) {
 
   return (
     <div>
-      This is the Menu:
-      <br />
-      <br />
+
       {categories}
-      <br />
-      This is your order:
-      <br />
-      <br />
+
       <Cart
         addToCart={addToCart}
         reduceQuantity={reduceQuantity}
