@@ -44,7 +44,6 @@ export default function LoginForm(props) {
 
   return (
     <div>
-      <h3>Login Form</h3>
       <form id="login-form" onSubmit={handleSubmit}>
         <input
           type="text"

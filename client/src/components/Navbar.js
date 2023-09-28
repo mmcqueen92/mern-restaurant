@@ -5,7 +5,7 @@ import { FaHamburger } from "react-icons/fa";
 export default function Navbar(props) {
   const { logOut, user } = props;
   return (
-    <div className="bg-darkGrey flex flex-row justify-center p-2">
+    <div className="bg-darkGrey flex flex-row justify-center p-2 fixed top-0 w-full">
 
         <FaHamburger
           style={{ color: "#CCCCCC", fontSize: "36px", margin: "5px", position: "absolute", top: "5px", left: "5px"}}

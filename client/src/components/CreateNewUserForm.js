@@ -42,7 +42,6 @@ export default function CreateNewUserForm() {
 
   return (
     <div>
-      <h3>Create New User Form</h3>
       <form id="new-user-form" onSubmit={handleSubmit}>
         <input
           type="text"

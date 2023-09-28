@@ -9,7 +9,8 @@ export default function Cart(props) {
 
    
     return (
-        <div>
+        <div className="fixed top-60 right-60 border-darkGrey border-solid border-4 p-8 rounded-sm">
+            <h1 className="text-3xl underline decoration-wavy decoration-from-font mb-3">Your Order:</h1>
             <CartList
             cart={cart}
             addToCart={addToCart}

@@ -2,20 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: 'Lato', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #F5F5F5;
+main {
+  margin-top: 60px;
 }
 
-h1, h2, h3 {
-  font-family: 'Cormorant', Georgia, serif;
+body {
+  margin: 0;
+  font-family: "Lato", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant", Georgia, serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -38,3 +44,75 @@ code {
   }
 }
 
+/* Basic styles for the menu container */
+.menu-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Divide the container into two columns */
+  grid-gap: 20px; /* Add spacing between columns */
+  height: 100vh;
+}
+
+/* Style the left 2/3 of the screen for the menu */
+.menu {
+  padding: 20px; /* Add padding as needed */
+}
+
+/* Style for the MenuListItem component */
+.menu-item {
+  background-color: #fff; /* Background color for menu items */
+  border: 1px solid #ccc; /* Border for menu items */
+  border-radius: 4px; /* Rounded corners */
+  padding: 20px; /* Add padding as needed */
+  margin-bottom: 10px; /* Spacing between menu items */
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #ccc; /* Dotted or dashed line between name and price */
+  padding-bottom: 10px; /* Spacing between top row and bottom row */
+}
+
+.menu-item-name {
+  font-size: 18px; /* Font size for item name */
+  font-weight: bold; /* Bold text for item name */
+}
+
+.menu-item-price {
+  font-size: 16px; /* Font size for item price */
+  color: black; /* Price text color */
+}
+
+.menu-item-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px; /* Spacing between top and bottom sections */
+}
+
+.menu-item-description {
+  font-size: 14px; /* Font size for item description */
+  color: #777; /* Description text color */
+  font-style: italic;
+}
+
+.cart-button {
+  display: inline-block;
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size for the button text */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Smooth hover transition */
+}
+
+.cart-button:hover {
+  background-color: #0056b3;
+}

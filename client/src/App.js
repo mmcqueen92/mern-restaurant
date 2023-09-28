@@ -58,8 +58,8 @@ function App() {
   useEffect(() => {
     if (user !== null) {
       localStorage.setItem("mern_restaurant_user", JSON.stringify(user));
-      setAddress(user.defaultAddress)
-      setEmail(user.email)
+      setAddress(user.defaultAddress);
+      setEmail(user.email);
     }
   }, [user]);
 
@@ -125,8 +125,8 @@ function App() {
     // EVERYTHING OPTION FOR ADMIN
     return (
       <div className="App">
+        <Navbar logOut={logOut} user={user}></Navbar>
         <Router>
-          <Navbar logOut={logOut} user={user}></Navbar>
           <main>
             <Routes>
               <Route path="/" element={<Home />}></Route>
@@ -237,7 +237,10 @@ function App() {
                 }
               ></Route>
               <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-              <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>}/>
+              <Route
+                path="/user-profile"
+                element={<UserProfile user={user} setUser={setUser} />}
+              />
             </Routes>
           </main>
         </Router>
@@ -292,7 +295,7 @@ function App() {
                 }
               ></Route>
               <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-              <Route path="/login" element={<Login setUser={setUser}/>} />
+              <Route path="/login" element={<Login setUser={setUser} />} />
               <Route path="/register" element={<CreateNewUser />} />
             </Routes>
           </main>

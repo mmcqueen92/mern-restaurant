@@ -1,5 +1,6 @@
 import Cart from "../components/Cart";
 import MenuCategory from "../components/MenuCategory";
+import { useEffect } from "react";
 
 export default function Menu(props) {
   const menu = props.menu;
@@ -10,27 +11,34 @@ export default function Menu(props) {
   let sortedMenu = {};
   for (let item of menu) {
     if (sortedMenu[item.category] === undefined) {
-      sortedMenu[item.category] = [item]
+      sortedMenu[item.category] = [item];
     } else {
-      sortedMenu[item.category].push(item)
+      sortedMenu[item.category].push(item);
     }
   }
   let categories = [];
   for (const [key, value] of Object.entries(sortedMenu)) {
-    const category = <MenuCategory name={key} items={value} addToCart={addToCart} key={categories.length + 1}/>
-    categories.push(category)
+    const category = (
+      <MenuCategory
+        name={key}
+        items={value}
+        addToCart={addToCart}
+        key={categories.length + 1}
+      />
+    );
+    categories.push(category);
   }
 
   return (
-    <div>
+    <div className="menu-container">
+      <div className="menu">{categories}</div>
 
-      {categories}
+        <Cart
+          addToCart={addToCart}
+          reduceQuantity={reduceQuantity}
+          cart={cart}
+        ></Cart>
 
-      <Cart
-        addToCart={addToCart}
-        reduceQuantity={reduceQuantity}
-        cart={cart}
-      ></Cart>
     </div>
   );
 }
