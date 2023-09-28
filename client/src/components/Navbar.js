@@ -1,33 +1,58 @@
 import { NavLink } from "react-router-dom";
 import UserProfile from "../pages/UserProfile";
+import { FaHamburger } from "react-icons/fa";
 
 export default function Navbar(props) {
   const { logOut, user } = props;
   return (
-    <div>
-      <div>Restaurant Name/Icon</div>
-      <NavLink to="/">Home </NavLink>
-      <NavLink to="/menu">Menu </NavLink>
-      <NavLink to="/about">About </NavLink>
-      <NavLink to="/contact">Contact </NavLink>
+    <div className="bg-darkGrey flex flex-row justify-center p-2">
+
+        <FaHamburger
+          style={{ color: "#CCCCCC", fontSize: "36px", margin: "5px", position: "absolute", top: "5px", left: "5px"}}
+        />
+
+      <NavLink to="/">
+        
+        <button className="navbar-button">Home</button>
+      </NavLink>
+      <NavLink to="/menu">
+        <button className="navbar-button">Menu</button>
+      </NavLink>
+      <NavLink to="/about">
+        <button className="navbar-button">About</button>
+      </NavLink>
+      <NavLink to="/contact">
+        <button className="navbar-button">Contact</button>
+      </NavLink>
       {!user && (
-        <div>
-          <NavLink to="/login">Login </NavLink>
-          <NavLink to="/register">Register </NavLink>
-        </div>
+        <span>
+          <NavLink to="/login">
+            <button className="navbar-button">Login</button>
+          </NavLink>
+          <NavLink to="/register">
+            <button className="navbar-button">Register</button>
+          </NavLink>
+        </span>
       )}
       {user && (
-        <div>
-          <NavLink to="/user-profile" element={<UserProfile/>}>Profile</NavLink>
-          <button onClick={logOut}>Log Out</button>
-        </div>
+        <span>
+          <NavLink to="/user-profile" element={<UserProfile />}>
+            <button className="navbar-button">Profile</button>
+          </NavLink>
+          <button onClick={logOut}>
+            <button className="navbar-button">Log Out</button>
+          </button>
+        </span>
       )}
-      <br />
       {user && user.isAdmin && (
-        <div>
-          <NavLink to="/admin/dashboard">Admin-Dashboard </NavLink>
-          <NavLink to="/admin/edit-menu">Edit-Menu </NavLink>
-        </div>
+        <span>
+          <NavLink to="/admin/dashboard">
+            <button className="navbar-button">Admin-Dashboard</button>
+          </NavLink>
+          <NavLink to="/admin/edit-menu">
+            <button className="navbar-button">Edit Menu</button>
+          </NavLink>
+        </span>
       )}
     </div>
   );
