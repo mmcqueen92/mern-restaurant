@@ -20,9 +20,13 @@ export default function UserOrderListItem(props) {
     fetchOrderInfo().then((res) => setOrderInfo(res))
   }, []);
 
-  const orderItems = orderInfo.items.map((item, i) => {
-    return <OrderItem item={item} key={i}/>
-  })
+  let orderItems;
+  if (orderInfo) {
+    orderItems = orderInfo.items.map((item, i) => {
+      return <OrderItem item={item} key={i}/>
+    })
+
+  }
 
   return (
     <div>

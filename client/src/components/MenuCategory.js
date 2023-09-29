@@ -13,7 +13,7 @@ export default function MenuCategory(props) {
 
   return (
     <div className="menu-category">
-      <h1 className="text-3xl underline decoration-wavy decoration-from-font my-3">{name}</h1>
+      <h1 className="text-4xl underline decoration-wavy decoration-from-font my-3 pt-5">{name}</h1>
       {itemComponents}
     </div>
   );

@@ -7,7 +7,7 @@ export default function Cart(props) {
   const reduceQuantity = props.reduceQuantity;
 
   return (
-    <div className="fixed top-24 w-2/6 rounded max-h- right-10 border-darkGrey border-solid border-4 p-8 rounded-sm">
+    <div className="menu-page-cart">
       <h1 className="text-3xl underline decoration-wavy decoration-from-font mb-3">
         Your Order:
       </h1>
@@ -19,7 +19,7 @@ export default function Cart(props) {
             reduceQuantity={reduceQuantity}
           ></CartList>
           <NavLink to="/checkout">
-            <button className="cart-button">Checkout</button>
+            <button className="checkout-button">Checkout</button>
           </NavLink>
         </div>
       )}

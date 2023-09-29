@@ -1,8 +1,18 @@
 import NewItemForm from "../components/NewItemForm";
 import EditMenuList from "../components/EditMenuList";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function EditMenu(props) {
-  const {menu, setMenu} = props;
+  const {menu, setMenu, user} = props;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user || !user.isAdmin) {
+      navigate("/")
+    }
+  }, [])
+
 
   const enableItem = async (itemId) => {
     const sendReq = await fetch(`http://localhost:5050/api/enable-item/${itemId}`, {mode: 'cors'});
