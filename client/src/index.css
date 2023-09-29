@@ -143,7 +143,8 @@ code {
 }
 
 .cart-item-description {
-  justify-content: flex-start;
+  width: 90%;
+  text-align: left;
 }
 
 /* Style for the description in the bottom left */
@@ -235,7 +236,7 @@ code {
 
 /* Style the "Menu" button within the overlay */
 .menu-button {
-  background-color: #007bff;
+  background-color: #333333;
   color: white;
   padding: 10px 20px;
   font-size: 1.5rem;
@@ -245,7 +246,7 @@ code {
 }
 
 .menu-button:hover {
-  background-color: #0056b3;
+  background-color: #6666cc;
 }
 
 

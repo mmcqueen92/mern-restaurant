@@ -11,7 +11,7 @@ export default function CartListItem(props) {
       </div>
 
       <div className="cart-item-bottom">
-        <p>{item.description}</p>
+        <div className="cart-item-description">{item.description}</div>
 
         <div className="cart-quantity-buttons-container">
           <button
