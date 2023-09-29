@@ -12,7 +12,7 @@ export default function MenuCategory(props) {
   });
 
   return (
-    <div className="border-4 border-darkGrey m-2 capitalize rounded-sm">
+    <div className="menu-category">
       <h1 className="text-3xl underline decoration-wavy decoration-from-font my-3">{name}</h1>
       {itemComponents}
     </div>

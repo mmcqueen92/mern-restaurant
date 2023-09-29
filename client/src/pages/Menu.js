@@ -1,6 +1,5 @@
 import Cart from "../components/Cart";
 import MenuCategory from "../components/MenuCategory";
-import { useEffect } from "react";
 
 export default function Menu(props) {
   const menu = props.menu;
