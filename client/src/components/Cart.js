@@ -16,7 +16,7 @@ export default function Cart(props) {
             addToCart={addToCart}
             reduceQuantity={reduceQuantity}
             ></CartList>
-            <NavLink to="/checkout">Checkout</NavLink>
+            <NavLink to="/checkout"><button className="cart-button">Checkout</button></NavLink>
         </div>
     )
 }

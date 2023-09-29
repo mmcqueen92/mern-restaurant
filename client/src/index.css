@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 main {
-  margin-top: 60px;
+
 }
 
 body {
@@ -50,6 +50,7 @@ code {
   grid-template-columns: 2fr 1fr; /* Divide the container into two columns */
   grid-gap: 20px; /* Add spacing between columns */
   height: 100vh;
+  margin-top: 40px;
 }
 
 /* Style the left 2/3 of the screen for the menu */
@@ -116,3 +117,55 @@ code {
 .cart-button:hover {
   background-color: #0056b3;
 }
+
+/* Center the overlay content both horizontally and vertically */
+.center-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.overlay-content-header {
+  position: absolute;
+  top: 15%; /* 15% from the top of the container */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  text-align: center;
+  width: 100%; /* Make the width 100% so it spans the entire container */
+}
+
+.overlay-content-button {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the restaurant name within the overlay */
+.restaurant-name {
+  font-family: 'Cormorant', serif;
+  font-size: 4rem;
+  color: #DCDCDC; /* Adjust the color as needed */
+  margin-top: 20px; /* Adjust the top margin as needed */
+}
+
+/* Style the "Menu" button within the overlay */
+.menu-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu-button:hover {
+  background-color: #0056b3;
+}
+
+
