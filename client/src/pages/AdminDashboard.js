@@ -12,7 +12,7 @@ export default function AdminDashboard({ user }) {
     if (user && user.isAdmin) {
       fetchOrders().then((res) => setActiveOrders(res));
     } else {
-      navigate("/")
+      navigate("/");
     }
   }, []);
 
@@ -73,20 +73,31 @@ export default function AdminDashboard({ user }) {
   };
 
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
-      <PaidOrdersList
-        orders={activeOrders.paid}
-        updateOrderStatus={updateOrderStatus}
-      />
-      <InProgressOrdersList
-        orders={activeOrders.inProgress}
-        updateOrderStatus={updateOrderStatus}
-      />
-      <EnRouteOrdersList
-        orders={activeOrders.enRoute}
-        updateOrderStatus={updateOrderStatus}
-      />
+    <div className="admin-dashboard">
+      <h1 className="dashboard-header">Admin Dashboard</h1>
+      <div className="dashboard-order-lists-container">
+        <div className="dashboard-column">
+          <h2 className="dashboard-column-title">Paid Orders</h2>
+          <PaidOrdersList
+            orders={activeOrders.paid}
+            updateOrderStatus={updateOrderStatus}
+          />
+        </div>
+        <div className="dashboard-column">
+          <h2 className="dashboard-column-title">In Progress Orders</h2>
+          <InProgressOrdersList
+            orders={activeOrders.inProgress}
+            updateOrderStatus={updateOrderStatus}
+          />
+        </div>
+        <div className="dashboard-column">
+          <h2 className="dashboard-column-title">En Route Orders</h2>
+          <EnRouteOrdersList
+            orders={activeOrders.enRoute}
+            updateOrderStatus={updateOrderStatus}
+          />
+        </div>
+      </div>
     </div>
   );
 }
