@@ -41,23 +41,28 @@ export default function CreateNewUserForm() {
   };
 
   return (
-    <div>
-      <form id="new-user-form" onSubmit={handleSubmit}>
+    <div className="login-form-container">
+      <h1 className="login-header">Register</h1>
+      <form id="login-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Enter email"
+          placeholder="Enter your email"
           onChange={handleEmail}
           value={email}
+          className="login-input"
         ></input>
 
         <input
           type="password"
-          placeholder="Enter a password"
+          placeholder="Enter your password"
           onChange={handlePassword}
           value={password}
+          className="login-input"
         ></input>
 
-        <button type="submit">Submit</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -38,18 +38,20 @@ export default function LoginForm(props) {
       localStorage.setItem("mern_restaurant_user", JSON.stringify(data.user));
       navigate("/");
     } else {
-        alert("Email or password does not match")
+      alert("Email or password does not match");
     }
   };
 
   return (
-    <div>
+    <div className="login-form-container">
+      <h1 className="login-header">Login</h1>
       <form id="login-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Enter your email"
           onChange={handleEmail}
           value={email}
+          className="login-input"
         ></input>
 
         <input
@@ -57,9 +59,12 @@ export default function LoginForm(props) {
           placeholder="Enter your password"
           onChange={handlePassword}
           value={password}
+          className="login-input"
         ></input>
 
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
     </div>
   );
