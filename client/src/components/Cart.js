@@ -5,6 +5,7 @@ export default function Cart(props) {
   const cart = props.cart;
   const addToCart = props.addToCart;
   const reduceQuantity = props.reduceQuantity;
+  const emptyCart = props.emptyCart;
 
   return (
     <div className="menu-page-cart">
@@ -17,7 +18,9 @@ export default function Cart(props) {
             cart={cart}
             addToCart={addToCart}
             reduceQuantity={reduceQuantity}
+            emptyCart={emptyCart}
           ></CartList>
+          
           <NavLink to="/checkout">
             <button className="checkout-button">Checkout</button>
           </NavLink>

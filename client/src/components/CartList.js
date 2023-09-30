@@ -4,6 +4,7 @@ export default function CartList(props) {
   const cart = props.cart;
   const addToCart = props.addToCart;
   const reduceQuantity = props.reduceQuantity;
+  const emptyCart = props.emptyCart;
 
   let total = 0;
   if (cart.length > 0) {
@@ -27,8 +28,10 @@ export default function CartList(props) {
   return (
     <div>
       {cartComponents}
-      <br />
-      Total: ${total.toFixed(2)}
+      <button className="empty-cart-button" onClick={() => emptyCart()}>
+        Empty Cart
+      </button>
+      <div className="cart-total">Total: ${total.toFixed(2)}</div>
     </div>
   );
 }

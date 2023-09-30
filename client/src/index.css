@@ -37,11 +37,11 @@ code {
   font-size: 16px; /* Adjust font size as needed */
   cursor: pointer;
   transition: background-color 0.3s; /* Add a smooth transition effect */
+ 
+}
 
-  /* Optional: Hover styles for buttons */
-  &:hover {
-    background-color: #555555; /* Darker color on hover */
-  }
+.navbar-button:hover {
+  background-color: #555555;
 }
 
 /* Basic styles for the menu container */
@@ -205,7 +205,7 @@ code {
 }
 
 .cart-item-description {
-  width: 90%;
+  width: 200%;
   text-align: left;
 }
 
@@ -242,6 +242,26 @@ code {
 /* Optional hover effect for quantity buttons */
 .cart-quantity-button:hover {
   background-color: #0056b3;
+}
+
+.cart-total {
+  padding: 10px
+}
+
+.empty-cart-button {
+  display: inline-block;
+  padding: 5px 10px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size for the button text */
+  color: #8B0000; /* Button text color */
+  border: 1px solid #8B0000;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Smooth hover transition */
+}
+
+.empty-cart-button:hover {
+  background-color: #8B0000;
+  color: white;
 }
 
 .checkout-button {
@@ -309,3 +329,243 @@ code {
 .menu-button:hover {
   background-color: #6666cc;
 }
+
+/* THIS IS THE START */
+
+.edit-menu-page-header {
+  font-size: 3rem;
+}
+
+.create-new-item-button {
+  background-color: #333333;
+  color: #f5f5f5;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+  width: 150px;
+}
+
+.create-new-item-button:hover {
+  background-color: #555555;
+}
+
+.edit-menu-list-container {
+  background-color: #f5f5f5;
+  border: 1px solid #333333;
+  padding: 20px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto
+}
+
+.edit-menu-list-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content:space-evenly ;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-menu-list-item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Style the buttons */
+.edit-menu-list-item button {
+  background-color: #333333;
+  color: #f5f5f5;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+  width: 150px;
+}
+
+.edit-menu-list-item button:hover {
+  background-color: #555555;
+}
+
+/* THIS IS THE END */
+
+.edit-menu-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+
+}
+
+.edit-menu-list-item .enable-item-button {
+  background-color: #4CAF50;
+}
+
+.edit-menu-list-item .enable-item-button:hover {
+  background-color: #388E3C
+}
+
+.edit-menu-list-item .disable-item-button {
+  background-color: #E57373
+}
+
+.edit-menu-list-item .disable-item-button:hover {
+  background-color: #C62828
+}
+
+.display-item {
+  background-color: #f5f5f5;
+  border: 1px solid #333333;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  width: 80%;
+}
+
+.display-item-name {
+  font-size: 24px;
+  margin: 10px;
+  color: #333333;
+}
+
+.display-item-description {
+  font-size: 16px;
+  color: #555555;
+  margin: 10px;
+  text-align: left;
+}
+
+.display-item-category {
+  font-size: 16px;
+  color: #555555;
+  text-transform: capitalize;
+  margin: 10px;
+}
+
+.display-item-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  margin: 10px;
+}
+
+.display-item-status {
+  font-size: 16px;
+  color: #f5f5f5;
+  background-color: #333333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.display-item-status.active {
+  background-color: #4CAF50; /* Green for active */
+}
+
+.display-item-status.inactive {
+  background-color: #E57373; /* Red for inactive */
+}
+
+.display-item-edit-button {
+  background-color: #333333;
+  color: #f5f5f5;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.display-item-edit-button:hover {
+  background-color: #555555;
+}
+
+.edit-item-form {
+  background-color: #f5f5f5;
+  border: 1px solid #333333;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.edit-item-section {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.edit-item-image {
+  padding: 0;
+  border: none;
+}
+
+.edit-menu-list-item .edit-item-save-button {
+  background-color: #4CAF50; /* Green color */
+  color: #f5f5f5;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-menu-list-item .edit-item-save-button:hover {
+  background-color: #388E3C; /* Darker green for hover */
+}
+
+.new-item-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-new-item-form {
+  background-color: #f5f5f5;
+  border: 1px solid #333333;
+  padding: 20px;
+  width: 80%;
+  align-self: center;
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-submit-button {
+  background-color: #4CAF50; /* Green color */
+  color: #f5f5f5;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit-button:hover {
+  background-color: #388E3C; /* Darker green for hover */
+}
+

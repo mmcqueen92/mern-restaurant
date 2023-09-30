@@ -6,6 +6,7 @@ export default function MenuListItem(props) {
   const name = item.name;
   const price = item.price;
   const description = item.description;
+  const image = item.image;
 
   return (
     <div className="menu-item">
@@ -18,7 +19,12 @@ export default function MenuListItem(props) {
       </div>
 
       <div className="menu-item-right">
-        <img src={imageUrl} alt="Item" className="menu-item-image" />
+        
+        <img
+              src={`data:image/jpeg;base64,${item.image}`}
+              alt={item.name}
+              className="menu-item-image"
+            />
         <div className="button-wrapper">
           <button
             className="cart-button"

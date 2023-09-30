@@ -6,6 +6,7 @@ export default function EditItemForm(props) {
   const [newDescription, setNewDescription] = useState(item.description);
   const [newCategory, setNewCategory] = useState(item.category);
   const [newPrice, setNewPrice] = useState(item.price);
+  const [newImage, setNewImage] = useState(null);
 
   const handleName = (e) => {
     setNewName(e.target.value);
@@ -23,33 +24,53 @@ export default function EditItemForm(props) {
     setNewPrice(e.target.value);
   };
 
+  const handleImageUpload = (e) => {
+    const imageFile = e.target.files[0];
+    setNewImage(imageFile);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Create a new FormData object
+    const formData = new FormData();
+
+    // Append the item details to the FormData object
+    formData.append("id", item._id);
+    formData.append("name", newName);
+    formData.append("description", newDescription);
+    formData.append("category", newCategory);
+    formData.append("price", newPrice);
+
+    // Append the edited image file to the FormData object
+    if (newImage) {
+      formData.append("image", newImage);
+    }
+
     const editedItem = await fetch("http://localhost:5050/api/edit-item", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: item._id,
-        name: newName,
-        description: newDescription,
-        category: newCategory,
-        price: newPrice,
-      }),
+      body: formData, // Use the FormData object as the request body
     });
 
     const data = await editedItem.json();
 
-    const newMenu = menu.map((item) => {
-      if (item._id === data._id) {
+    const newMenu = menu.map((menuItem) => {
+      if (menuItem._id === data._id) {
         return data;
       } else {
-        return item;
+        return menuItem;
       }
-    })
+    });
 
-    setMenu(newMenu)
-    setEditItem(false)
+    setMenu(newMenu);
+    setEditItem(false);
+
+    // Clear form fields and selected image after submission
+    setNewName("");
+    setNewDescription("");
+    setNewCategory("");
+    setNewPrice("");
+    setNewImage(null);
   };
 
   const discardChanges = () => {
@@ -61,26 +82,53 @@ export default function EditItemForm(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={newName} onChange={handleName}></input>
+    <div className="edit-item-form">
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <input
+          type="text"
+          className="edit-item-section"
+          value={newName}
+          onChange={handleName}
+          placeholder="Enter item name"
+        ></input>
         <br />
         <input
           type="text"
+          className="edit-item-section"
           value={newDescription}
           onChange={handleDescription}
+          placeholder="Enter item description"
         ></input>
         <br />
         <input
           type="text"
+          className="edit-item-section"
           value={newCategory}
           onChange={handleCategory}
+          placeholder="Enter category"
         ></input>
         <br />
-        <input type="number" value={newPrice} onChange={handlePrice}></input>
+        <input
+          type="number"
+          className="edit-item-section"
+          value={newPrice}
+          onChange={handlePrice}
+          placeholder="Enter price"
+        ></input>
         <br />
-        <button type="submit">Save</button>
-        <button onClick={discardChanges}>Discard</button>
+        <input
+          type="file"
+          accept="image/*" // Specify accepted file types (images)
+          className="edit-item-image"
+          onChange={handleImageUpload}
+        ></input>
+        <br />
+        <button type="submit" className="edit-item-save-button">
+          Save
+        </button>
+        <button className="edit-item-discard-button" onClick={discardChanges}>
+          Discard
+        </button>
       </form>
     </div>
   );

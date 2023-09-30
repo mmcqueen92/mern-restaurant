@@ -6,6 +6,7 @@ export default function Menu(props) {
   const addToCart = props.addToCart;
   const reduceQuantity = props.reduceQuantity;
   const cart = props.cart;
+  const emptyCart = props.emptyCart;
 
   let sortedMenu = {};
   for (let item of menu) {
@@ -36,6 +37,7 @@ export default function Menu(props) {
           addToCart={addToCart}
           reduceQuantity={reduceQuantity}
           cart={cart}
+          emptyCart={emptyCart}
         ></Cart>
 
     </div>

@@ -111,6 +111,9 @@ function App() {
     setCart(newArray);
   };
 
+  // empty cart function
+  const emptyCart = () => setCart(initialCart)
+
   // handleAddress function for controlled component in Checkout
   const handleAddress = (event) => {
     setAddress(event.target.value);
@@ -136,6 +139,7 @@ function App() {
                   addToCart={addToCart}
                   reduceQuantity={reduceQuantity}
                   cart={cart}
+                  emptyCart={emptyCart}
                 />
               }
             ></Route>
