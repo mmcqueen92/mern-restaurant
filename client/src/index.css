@@ -850,3 +850,32 @@ code {
   color: #555555;
   line-height: 1.5; /* Adjust line height for readability */
 }
+
+.contact-us-page {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+}
+
+.contact-us-title {
+  font-size: 36px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  font-size: 16px;
+  color: #555555;
+}
+
+.contact-phone a,
+.contact-email a {
+  color: #555555;
+  text-decoration: none;
+}
+
+.contact-phone a:hover,
+.contact-email a:hover {
+  color: #333333;
+}
