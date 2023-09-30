@@ -10,16 +10,18 @@ export default function EnRouteOrderListItem(props) {
   }
 
   return (
-    <div>
-      <h4>En-Route Order</h4>
-      <p>Items:</p>
-      <br />
-      {items}
-      <br />
-      Status: {order.status}
-      <button onClick={() =>{
-        updateOrderStatus(order._id, "delivered")
-      }}>Delivered</button>
+    <div className="dashboard-list-order">
+      <p className="dashboard-order-label">Items:</p>
+      <div className="dashboard-order-items">{items}</div>
+      <p className="dashboard-order-status">Status: {order.status}</p>
+      <button
+        className="dashboard-order-button"
+        onClick={() => {
+          updateOrderStatus(order._id, "delivered");
+        }}
+      >
+        Start
+      </button>
     </div>
   );
   }

@@ -183,6 +183,7 @@ function App() {
             <Route path="/view-order/:id" element={<ViewOrder />}></Route>
             <Route path="/login" element={<Login user={user} setUser={setUser} />} />
             <Route path="/register" element={<CreateNewUser user={user} />} />
+            <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>} />
           </Routes>
         </main>
       </Router>

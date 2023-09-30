@@ -10,8 +10,6 @@ export default function EnRouteOrdersList(props) {
   }
   return (
     <div>
-      En Route Orders List
-      <br />
       {orderComponents}
     </div>
   );

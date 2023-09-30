@@ -1,25 +1,27 @@
 import OrderItem from "./OrderItem";
 
 export default function PaidOrderListItem(props) {
-  const {order, updateOrderStatus} = props;
+  const { order, updateOrderStatus } = props;
   let items;
   if (order.items) {
     items = order.items.map((item, i) => {
-      return <OrderItem item={item} key={i}/>;
+      return <OrderItem item={item} key={i} />;
     });
   }
 
   return (
-    <div>
-      <h4>Paid Order</h4>
-      <p>Items:</p>
-      <br />
-      {items}
-      <br />
-      Status: {order.status}
-      <button onClick={() =>{
-        updateOrderStatus(order._id, "in-progress")
-      }}>Start</button>
+    <div className="dashboard-list-order">
+      <p className="dashboard-order-label">Items:</p>
+      <div className="dashboard-order-items">{items}</div>
+      <p className="dashboard-order-status">Status: {order.status}</p>
+      <button
+        className="dashboard-order-button"
+        onClick={() => {
+          updateOrderStatus(order._id, "in-progress");
+        }}
+      >
+        Start
+      </button>
     </div>
   );
 }

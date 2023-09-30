@@ -30,7 +30,6 @@ export default function UserOrderListItem(props) {
 
   return (
     <div>
-      <h5>Single previous order</h5>
       Items: <br/>
       {orderItems}
     </div>

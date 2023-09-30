@@ -30,15 +30,20 @@ export default function NewAddressForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="new-address-input">Add New Address </label>
+    <form className="user-address-form" onSubmit={handleSubmit}>
+      <label htmlFor="new-address-input" className="user-address-label">
+        Add New Address
+      </label>
       <input
         type="text"
         value={newAddress}
         onChange={handleNewAddress}
         id="new-address-input"
+        className="user-address-input"
       ></input>
-      <button type="submit">Add</button>
+      <button type="submit" className="user-address-button">
+        Add
+      </button>
     </form>
   );
 }

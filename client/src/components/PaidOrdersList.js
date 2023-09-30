@@ -10,8 +10,6 @@ export default function PaidOrdersList(props) {
   }
   return (
     <div>
-      Paid Orders List
-      <br />
       {orderComponents}
     </div>
   );

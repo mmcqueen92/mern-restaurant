@@ -10,8 +10,6 @@ export default function InProgressOrdersList(props) {
   }
   return (
     <div>
-      In Progress Orders List
-      <br />
       {orderComponents}
     </div>
   );

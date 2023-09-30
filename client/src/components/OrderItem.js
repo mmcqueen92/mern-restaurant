@@ -1,9 +1,12 @@
 export default function OrderItem(props) {
-  const {item} = props;
+  const { item } = props;
+
   return (
-    <div>
-      <h5>1 item!</h5>
-      {item.name} x{item.quantity}
+    <div className="order-item">
+      <div className="order-item-details">
+        <div className="order-item-name">{item.name}</div>
+        <div className="order-item-quantity">x {item.quantity}</div>
+      </div>
     </div>
   );
 }
