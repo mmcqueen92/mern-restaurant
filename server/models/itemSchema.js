@@ -19,7 +19,7 @@ const ItemSchema = new Schema({
     required: [true, "The category field is required"],
   },
   image: {
-    type: String,
+    type: Buffer,
     required: false,
   },
   isActive: {
