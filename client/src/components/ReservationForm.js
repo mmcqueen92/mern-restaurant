@@ -6,6 +6,7 @@ export default function ReservationForm(props) {
     onClose,
     setShowReservationMessage,
     setReservationMessage,
+    setShowReservationForm,
   } = props;
 
   const [formData, setFormData] = useState({
@@ -58,11 +59,7 @@ export default function ReservationForm(props) {
         }
       })
       .catch((error) => {
-        console.error(
-          "Error creating reservation:",
-          error
-
-        );
+        console.error("Error creating reservation:", error);
       });
 
     // Close the form
@@ -70,6 +67,7 @@ export default function ReservationForm(props) {
   };
 
   return (
+    // Updated ReservationForm component
     <div className="reservation-form">
       <h3>Create Reservation</h3>
       <form onSubmit={handleSubmit}>
@@ -82,6 +80,7 @@ export default function ReservationForm(props) {
             value={formData.name}
             onChange={handleInputChange}
             required
+            className="form-input"
           />
         </div>
         <div className="form-group">
@@ -93,6 +92,7 @@ export default function ReservationForm(props) {
             value={formData.phone}
             onChange={handleInputChange}
             required
+            className="form-input"
           />
         </div>
         <div className="form-group">
@@ -105,9 +105,20 @@ export default function ReservationForm(props) {
             onChange={handleInputChange}
             required
             min="1" // Minimum value for the number of people
+            className="form-input"
           />
         </div>
-        <button type="submit">Submit</button>
+        <div className="button-group">
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
+          <button
+            onClick={() => setShowReservationForm(false)}
+            className="cancel-button"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

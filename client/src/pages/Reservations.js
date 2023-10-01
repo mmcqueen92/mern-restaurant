@@ -78,39 +78,51 @@ export default function ReservationPage() {
           tileClassName={tileClassName}
           onClickDay={(date) => setSelectedDate(date)}
         />
-        <ul className="selected-date-info">
-          {" "}
-          {/* Moved ul outside */}
-          {selectedDate ? <h1>{selectedDate.toDateString()}</h1> : <></>}
-          {getTimeSlotsForSelectedDate(selectedDate).map((timeSlot) => (
-            <li
-              key={timeSlot._id}
-              className={
-                timeSlot.seats_booked >= 2 ? "available" : "unavailable"
-              }
-              onClick={() => handleTimeSlotClick(timeSlot)}
-            >
-              {timeSlot.start_time.toLocaleTimeString()} -{" "}
-              {timeSlot.end_time.toLocaleTimeString()}
-              {timeSlot.seats_booked <= 28 && (
-                <span className="seats-available">
-                  {30 - timeSlot.seats_booked} seats available
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
-        {showReservationForm && selectedTimeSlot && (
-          <ReservationForm
-            timeSlot={selectedTimeSlot}
-            onClose={() => setShowReservationForm(false)}
-            setShowReservationMessage={setShowReservationMessage}
-            setReservationMessage={setReservationMessage}
-          />
-        )}
+        <div className="reservation-page-bottom">
+          <ul className="selected-date-info">
+            {" "}
+            {/* Moved ul outside */}
+            {selectedDate ? <h1>{selectedDate.toDateString()}</h1> : <></>}
+            {getTimeSlotsForSelectedDate(selectedDate).map((timeSlot) => (
+              <div
+                key={timeSlot._id}
+                className={`time-slot ${
+                  timeSlot.seats_booked <= 28 ? "available" : "unavailable"
+                }`}
+                onClick={() => handleTimeSlotClick(timeSlot)}
+              >
+                <div className="time">
+                  {timeSlot.start_time.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  -{" "}
+                  {timeSlot.end_time.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
+                {timeSlot.seats_booked <= 28 && (
+                  <div className="seats-available">
+                    {30 - timeSlot.seats_booked} seats available
+                  </div>
+                )}
+              </div>
+            ))}
+          </ul>
+          {showReservationForm && selectedTimeSlot && (
+            <ReservationForm
+              timeSlot={selectedTimeSlot}
+              onClose={() => setShowReservationForm(false)}
+              setShowReservationMessage={setShowReservationMessage}
+              setReservationMessage={setReservationMessage}
+              setShowReservationForm={setShowReservationForm}
+            />
+          )}
+        </div>
 
         {showReservationMessage && (
-            <ReservationMessage message={reservationMessage}/>
+          <ReservationMessage message={reservationMessage} />
         )}
       </div>
     </div>

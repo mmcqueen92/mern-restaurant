@@ -23,6 +23,9 @@ export default function Navbar(props) {
       <NavLink to="/menu">
         <button className="navbar-button">Menu</button>
       </NavLink>
+      <NavLink to="/reservations">
+        <button className="navbar-button">Reservations</button>
+      </NavLink>
       <NavLink to="/about">
         <button className="navbar-button">About</button>
       </NavLink>

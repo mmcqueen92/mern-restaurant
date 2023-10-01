@@ -938,6 +938,13 @@ code {
   font-weight: bold;
 }
 
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .calendar-cell.available {
   background-color: #4caf50; /* Green color */
   color: #fff; /* White text color */
@@ -1003,3 +1010,106 @@ code {
 }
 
 /* Add more styles as needed */
+/* Your CSS file */
+.time-slot {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time-slot.available {
+  background-color: #b8e2a8;
+}
+
+.time-slot.unavailable {
+  background-color: #f5a623;
+}
+
+.time {
+  font-weight: bold;
+}
+
+.seats-available {
+  font-size: 14px;
+  color: #333;
+}
+
+.reservation-page-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Your CSS file */
+.reservation-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 15px 30px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #999;
+}
