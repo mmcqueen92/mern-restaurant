@@ -16,6 +16,8 @@ import CreateNewUser from "./pages/CreateNewUser";
 import UserProfile from "./pages/UserProfile";
 import Reservations from "./pages/Reservations"
 import LogOut from "./pages/LogOut";
+import DeliveryDashboard from "./pages/DeliveryDashboard";
+import ReservationDashboard from "./pages/ReservationDashboard";
 
 
 
@@ -185,8 +187,16 @@ function App() {
               element={<AdminDashboard user={user} />}
             ></Route>
             <Route
+              path="/admin/delivery-dashboard"
+              element={<DeliveryDashboard user={user} />}
+            ></Route>
+            <Route
               path="/admin/edit-menu"
               element={<EditMenu menu={menu} setMenu={setMenu} user={user} />}
+            ></Route>
+            <Route
+              path="/admin/reservation-dashboard"
+              element={<ReservationDashboard user={user} />}
             ></Route>
             <Route path="/view-order/:id" element={<ViewOrder />}></Route>
             <Route path="/login" element={<Login user={user} setUser={setUser} />} />
@@ -194,6 +204,7 @@ function App() {
             <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>} />
             <Route path="/reservations" element={<Reservations/>}/>
             <Route path="/logout" element={<LogOut setUser={setUser}/>}/>
+
           </Routes>
         </main>
       </Router>

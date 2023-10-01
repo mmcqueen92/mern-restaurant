@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import PaidOrdersList from "../components/PaidOrdersList";
 import InProgressOrdersList from "../components/InProgressOrdersList";
 import EnRouteOrdersList from "../components/EnRouteOrdersList";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function AdminDashboard({ user }) {
+export default function DeliveryDashboard({ user }) {
   const [activeOrders, setActiveOrders] = useState({});
   const navigate = useNavigate();
 
@@ -38,11 +38,6 @@ export default function AdminDashboard({ user }) {
     return data;
   };
 
-  // for testing purposes
-  // useEffect(() => {
-  //   console.log("Orders?: ", activeOrders);
-  // }, [activeOrders]);
-
   const updateOrderStatus = async (orderId, updatedStatus) => {
     fetch("http://localhost:5050/api/update-order-status", {
       method: "POST",
@@ -74,23 +69,31 @@ export default function AdminDashboard({ user }) {
 
   return (
     <div className="admin-dashboard">
-      <h1 className="dashboard-header">Admin Dashboard</h1>
-
-      <NavLink to="/admin/edit-menu" className="admin-dashboard-button">
-        Edit Menu
-      </NavLink>
-      <NavLink
-        to="/admin/delivery-dashboard"
-        className="admin-dashboard-button"
-      >
-        Delivery Dashboard
-      </NavLink>
-      <NavLink
-        to="/admin/reservation-dashboard"
-        className="admin-dashboard-button"
-      >
-        Reservations
-      </NavLink>
+      <h1 className="dashboard-header">Delivery Dashboard</h1>
+      <div className="dashboard-order-lists-container">
+        <div className="dashboard-column">
+          <h2 className="dashboard-column-title">Paid Orders</h2>
+          <PaidOrdersList
+            orders={activeOrders.paid}
+            updateOrderStatus={updateOrderStatus}
+          />
+        </div>
+        <div className="dashboard-column">
+          <h2 className="dashboard-column-title">In Progress Orders</h2>
+          <InProgressOrdersList
+            orders={activeOrders.inProgress}
+            updateOrderStatus={updateOrderStatus}
+          />
+        </div>
+        <div className="dashboard-column">
+          <h2 className="dashboard-column-title">En Route Orders</h2>
+          <EnRouteOrdersList
+            orders={activeOrders.enRoute}
+            updateOrderStatus={updateOrderStatus}
+          />
+        </div>
+      </div>
+      
     </div>
   );
 }

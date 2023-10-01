@@ -6,13 +6,18 @@ export default function Navbar(props) {
   const { logOut, user } = props;
   return (
     <div className="bg-darkGrey flex flex-row justify-center p-2 fixed top-0 w-full">
-
-        <FaHamburger
-          style={{ color: "#CCCCCC", fontSize: "36px", margin: "5px", position: "absolute", top: "5px", left: "5px"}}
-        />
+      <FaHamburger
+        style={{
+          color: "#CCCCCC",
+          fontSize: "36px",
+          margin: "5px",
+          position: "absolute",
+          top: "5px",
+          left: "5px",
+        }}
+      />
 
       <NavLink to="/">
-        
         <button className="navbar-button">Home</button>
       </NavLink>
       <NavLink to="/menu">
@@ -34,13 +39,10 @@ export default function Navbar(props) {
           </NavLink>
         </span>
       )}
-      {user && (
+      {user && !user.isAdmin && (
         <span>
           <NavLink to="/user-profile" element={<UserProfile />}>
             <button className="navbar-button">Profile</button>
-          </NavLink>
-          <NavLink to="/logout">
-            <button className="navbar-button">Log Out</button>
           </NavLink>
         </span>
       )}
@@ -49,8 +51,12 @@ export default function Navbar(props) {
           <NavLink to="/admin/dashboard">
             <button className="navbar-button">Admin-Dashboard</button>
           </NavLink>
-          <NavLink to="/admin/edit-menu">
-            <button className="navbar-button">Edit Menu</button>
+        </span>
+      )}
+      {user && (
+        <span>
+          <NavLink to="/logout">
+            <button className="navbar-button">Log Out</button>
           </NavLink>
         </span>
       )}
