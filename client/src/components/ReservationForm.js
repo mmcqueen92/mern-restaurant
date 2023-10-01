@@ -16,6 +16,16 @@ export default function ReservationForm(props) {
     timeSlot: timeSlot,
   });
 
+  console.log("TIME SLOT: ", timeSlot)
+  const timeOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true, // Use 24-hour format
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -70,6 +80,7 @@ export default function ReservationForm(props) {
     // Updated ReservationForm component
     <div className="reservation-form">
       <h3>Create Reservation</h3>
+      <div className="reservation-form-time">{timeSlot.start_time.toLocaleString('en-US', timeOptions)}</div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

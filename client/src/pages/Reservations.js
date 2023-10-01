@@ -77,6 +77,7 @@ export default function ReservationPage() {
           value={selectedDate}
           tileClassName={tileClassName}
           onClickDay={(date) => setSelectedDate(date)}
+          className="calendar"
         />
         <div className="reservation-page-bottom">
           <ul className="selected-date-info">
@@ -96,11 +97,7 @@ export default function ReservationPage() {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}{" "}
-                  -{" "}
-                  {timeSlot.end_time.toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+
                 </div>
                 {timeSlot.seats_booked <= 28 && (
                   <div className="seats-available">

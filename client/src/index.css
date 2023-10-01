@@ -945,13 +945,21 @@ code {
   align-items: center;
 }
 
+.calendar {
+  border: 1px #333333 solid;
+}
+
+.calendar-cell {
+  border: 1px #333333 solid;
+}
+
 .calendar-cell.available {
-  background-color: #4caf50; /* Green color */
+  background-color: #8FBC8F; /* Green color */
   color: #fff; /* White text color */
 }
 
 .calendar-cell.unavailable {
-  background-color: #f44336; /* Red color */
+  background-color: #800020; /* Red color */
   color: #fff; /* White text color */
 }
 
@@ -1018,6 +1026,7 @@ code {
   margin-bottom: 10px;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
