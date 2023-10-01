@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 require("./loadEnvironment.js");
+const cronJob = require('./scripts/cron.js');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dbRouter = require('./routes/db-routes.js')
+const reservationRouter = require('./routes/reservation-routes.js')
 const PORT = process.env.PORT || 5050;
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-08-01",
@@ -25,6 +27,7 @@ mongoose.Promise = global.Promise;
 
 // db routes
 app.use('/api', dbRouter);
+app.use('/reservations', reservationRouter)
 
 // send stripe key to create payment
 app.get("/config", (req, res) => {

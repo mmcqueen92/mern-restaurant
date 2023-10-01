@@ -879,3 +879,71 @@ code {
 .contact-email a:hover {
   color: #333333;
 }
+
+/* reservation.css */
+
+.reservation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.reservation-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.reservation-subtitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.reservation-timeslots {
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.reservation-timeslot-list {
+  list-style: none;
+  padding: 0;
+}
+
+.reservation-timeslot-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.reservation-timeslot-time {
+  font-size: 18px;
+}
+
+.reservation-book-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reservation-book-button:hover {
+  background-color: #388E3C;
+}
+
+.reservation-not-available {
+  color: #FF0000;
+  font-weight: bold;
+}
+
+.calendar-cell.available {
+  background-color: #4caf50; /* Green color */
+  color: #fff; /* White text color */
+}
+
+.calendar-cell.unavailable {
+  background-color: #f44336; /* Red color */
+  color: #fff; /* White text color */
+}

@@ -14,6 +14,7 @@ import ViewOrder from "./pages/ViewOrder";
 import Login from "./pages/Login";
 import CreateNewUser from "./pages/CreateNewUser";
 import UserProfile from "./pages/UserProfile";
+import Reservations from "./pages/Reservations"
 
 function App() {
   const initialCart = useMemo(() => [], []);
@@ -184,6 +185,7 @@ function App() {
             <Route path="/login" element={<Login user={user} setUser={setUser} />} />
             <Route path="/register" element={<CreateNewUser user={user} />} />
             <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>} />
+            <Route path="/reservations" element={<Reservations/>}/>
           </Routes>
         </main>
       </Router>

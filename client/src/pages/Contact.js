@@ -9,8 +9,8 @@ export default function Contact() {
         </p>
         <p className="contact-email">
           Email:{" "}
-          <a href="mailto:burgersbunsandbeyond@email.com">
-            burgersbunsandbeyond@email.com
+          <a href="mailto:burgerbunandbeyond@email.com">
+            burgerbunandbeyond@email.com
           </a>
         </p>
       </div>
