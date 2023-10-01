@@ -6,12 +6,15 @@ const TimeSlot = require("../models/timeSlotSchema");
 // POST request to create a new reservation
 router.post("/", async (req, res) => {
   try {
-    const { name, phone, timeSlot, numberOfPeople } = req.body;
+    const { name, phone, timeSlotId, numberOfPeople } = req.body;
 
-    // Check for seat availability for the selected timeslots
+    // Check for seat availability for the selected time slots
+    const timeSlotArray = await TimeSlot.find({_id: timeSlotId})
+    const timeSlotToUpdate = timeSlotArray[0];
+
     const existingReservations = await Reservation.find({
       timeSlot: {
-        $in: [timeSlot, timeSlot + 1, timeSlot + 2, timeSlot + 3], // Check the selected timeslot and the following 3 timeslots
+        $in: timeSlotToUpdate.start_time,
       },
     });
 
@@ -28,11 +31,12 @@ router.post("/", async (req, res) => {
         .json({ error: "Not enough seats available for this time slot" });
     }
 
+
     // Create a new reservation
     const reservation = new Reservation({
       name,
       phone,
-      timeSlot,
+      timeSlot: timeSlotToUpdate.start_time,
       numberOfPeople,
       // Add more fields as needed
     });
@@ -40,11 +44,22 @@ router.post("/", async (req, res) => {
     // Save the reservation to the database
     await reservation.save();
 
+    // Update the availability for the selected time slots
+
+    // Update the seats booked for the time slot
+    timeSlotToUpdate.seats_booked += numberOfPeople;
+
+    // Save the updated time slot
+    await timeSlotToUpdate.save();
+
     res.status(201).json(reservation); // Respond with the created reservation
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while creating the reservation" });
+    console.error("Error creating reservation:", error);
+
+    res.status(500).json({
+      error: "An error occurred while creating the reservation",
+      errorMessage: error.message, // Include the actual error message
+    });
   }
 });
 
@@ -131,21 +146,23 @@ router.get("/search", async (req, res) => {
 
 // GET request to fetch all timeslots
 router.get("/all-time-slots", async (req, res) => {
-    try {
-      const currentDate = new Date();
-      // Set the time to the beginning of the day (midnight)
-      currentDate.setHours(0, 0, 0, 0);
-  
-      // Find time slots where the start_time is greater than or equal to the current date
-      const timeSlots = await TimeSlot.find({
-        start_time: { $gte: currentDate },
-      });
-  
-      res.status(200).json(timeSlots);
-    } catch (error) {
-      console.error("Error fetching time slots:", error);
-      res.status(500).json({ error: "An error occurred while fetching time slots" });
-    }
-  });
+  try {
+    const currentDate = new Date();
+    // Set the time to the beginning of the day (midnight)
+    currentDate.setHours(0, 0, 0, 0);
+
+    // Find time slots where the start_time is greater than or equal to the current date
+    const timeSlots = await TimeSlot.find({
+      start_time: { $gte: currentDate },
+    });
+
+    res.status(200).json(timeSlots);
+  } catch (error) {
+    console.error("Error fetching time slots:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching time slots" });
+  }
+});
 
 module.exports = router;

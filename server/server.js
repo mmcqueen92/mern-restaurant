@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("./loadEnvironment.js");
-const cronJob = require('./scripts/cron.js');
+require('./scripts/cron.js');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dbRouter = require('./routes/db-routes.js')

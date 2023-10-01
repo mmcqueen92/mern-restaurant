@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import ReservationForm from "../components/ReservationForm";
+import ReservationMessage from "../components/ReservationMessage";
 
 export default function ReservationPage() {
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [showReservationForm, setShowReservationForm] = useState(false);
+  const [showReservationMessage, setShowReservationMessage] = useState(false);
+  const [reservationMessage, setReservationMessage] = useState("");
 
   useEffect(() => {
     // Fetch all time slots from the backend
@@ -64,8 +67,6 @@ export default function ReservationPage() {
   const handleTimeSlotClick = (timeSlot) => {
     setSelectedTimeSlot(timeSlot);
     setShowReservationForm(true);
-    console.log("Selected timeSlot._id:", timeSlot._id);
-    console.log("TYPEOF Selected timeSlot._id:", typeof timeSlot._id);
   };
 
   return (
@@ -77,7 +78,9 @@ export default function ReservationPage() {
           tileClassName={tileClassName}
           onClickDay={(date) => setSelectedDate(date)}
         />
-        <ul className="selected-date-info"> {/* Moved ul outside */}
+        <ul className="selected-date-info">
+          {" "}
+          {/* Moved ul outside */}
           {getTimeSlotsForSelectedDate(selectedDate).map((timeSlot) => (
             <li
               key={timeSlot._id}
@@ -100,7 +103,13 @@ export default function ReservationPage() {
           <ReservationForm
             timeSlot={selectedTimeSlot}
             onClose={() => setShowReservationForm(false)}
+            setShowReservationMessage={setShowReservationMessage}
+            setReservationMessage={setReservationMessage}
           />
+        )}
+
+        {showReservationMessage && (
+            <ReservationMessage message={reservationMessage}/>
         )}
       </div>
     </div>

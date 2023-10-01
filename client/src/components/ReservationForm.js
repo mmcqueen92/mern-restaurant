@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
-export default function ReservationForm({ timeSlot, onClose }) {
+export default function ReservationForm(props) {
+  const {
+    timeSlot,
+    onClose,
+    setShowReservationMessage,
+    setReservationMessage,
+  } = props;
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     numberOfPeople: 1, // Default value
     timeSlot: timeSlot,
   });
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +33,7 @@ export default function ReservationForm({ timeSlot, onClose }) {
       name: formData.name,
       phone: formData.phone,
       numberOfPeople: parseInt(formData.numberOfPeople),
-      timeSlot: parseInt(timeSlot._id), // Change to match the server-side expectation
+      timeSlotId: timeSlot._id, // Change to match the server-side expectation
     };
 
     // Send a POST request to create the reservation
@@ -38,18 +44,25 @@ export default function ReservationForm({ timeSlot, onClose }) {
       },
       body: JSON.stringify(reservation),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           // Reservation created successfully
           // You can perform additional actions here (e.g., show a success message)
           console.log("Reservation created successfully");
+          setReservationMessage("Reservation created successfully");
+          setShowReservationMessage(true);
         } else {
           // Handle errors (e.g., display an error message)
-          console.error("Error creating reservation");
+          const responseData = await response.json();
+          console.error("Error creating reservation:", responseData);
         }
       })
       .catch((error) => {
-        console.error("Error creating reservation:", error);
+        console.error(
+          "Error creating reservation:",
+          error
+
+        );
       });
 
     // Close the form

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const generateTimeSlots = require('../utils/GenerateTimeSlots');
+const removeExpiredTimeSlots = require('../utils/RemoveExpiredTimeSlots');
 const TimeSlot = require('../models/timeSlotSchema');
 
 // Initialize Mongoose and connect to your MongoDB database
@@ -31,3 +32,5 @@ while (date <= twoWeeksFromNow) {
 
   date.setDate(date.getDate() + 1);
 }
+
+removeExpiredTimeSlots();
