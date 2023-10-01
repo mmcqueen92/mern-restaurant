@@ -16,7 +16,6 @@ export default function ReservationForm(props) {
     timeSlot: timeSlot,
   });
 
-  console.log("TIME SLOT: ", timeSlot)
   const timeOptions = {
     year: "numeric",
     month: "short",
@@ -58,8 +57,6 @@ export default function ReservationForm(props) {
       .then(async (response) => {
         if (response.ok) {
           // Reservation created successfully
-          // You can perform additional actions here (e.g., show a success message)
-          console.log("Reservation created successfully");
           setReservationMessage("Reservation created successfully");
           setShowReservationMessage(true);
         } else {

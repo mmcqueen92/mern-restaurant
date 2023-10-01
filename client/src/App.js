@@ -72,11 +72,6 @@ function App() {
     }
   }, [user]);
 
-  // for testing purposes when necessary
-  useEffect(() => {
-    // console.log("MENU: ", menu)
-  }, [menu]);
-
   const logOut = () => {
     setUser(null);
     localStorage.setItem("mern_restaurant_user", null);

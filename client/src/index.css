@@ -175,6 +175,12 @@ code {
 
 /* CART THINGS */
 
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Style for the CartListItem container */
 .cart-item {
   display: flex;
@@ -274,10 +280,49 @@ code {
   border-radius: 4px; /* Rounded corners */
   cursor: pointer;
   transition: background-color 0.2s ease; /* Smooth hover transition */
+  margin-top: 10px;
 }
 
 .checkout-button:hover {
   background-color: #0056b3;
+}
+
+.payment-button {
+  display: inline-block;
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size for the button text */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Smooth hover transition */
+  margin-top: 10px;
+}
+
+.payment-button:hover {
+  background-color: #0056b3;
+}
+
+.cost-breakdown {
+  display: flex;
+  flex-direction: row;
+  border: 1px #333333 solid;
+  margin: 5px;
+}
+
+.cost-breakdown-labels {
+text-align: left;
+margin: 10px;
+}
+
+.cost-breakdown-values {
+  text-align: right;
+  margin: 10px;
+}
+
+.total-section {
+  border-top: 1px #333333 solid;
 }
 
 /* Center the overlay content both horizontally and vertically */

@@ -6,11 +6,6 @@ export default function MainContainer() {
   const [cart, setCart] = useState([]);
   const [address, setAddress] = useState("");
 
-  // useEffect to monitor cart for testing purposes
-  useEffect(() => {
-    console.log("CART: ", cart);
-  }, [cart]);
-
   // handleAddress function for controlled component in Checkout
   const handleAddress = (event) => {
     setAddress(event.target.value);

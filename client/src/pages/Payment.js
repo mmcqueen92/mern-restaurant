@@ -12,8 +12,10 @@ export default function Payment(props) {
   for (let item of cart) {
     itemTotal += item.price * item.quantity;
   }
-  itemTotal *= 100
-  itemTotal = Math.round(itemTotal)
+  itemTotal = itemTotal * 1.05 + 5;
+  itemTotal *= 100;
+  itemTotal = Math.round(itemTotal);
+
 
   useEffect(() => {
     fetch("http://localhost:5050/config", {mode: 'cors'}).then(async (r) => {

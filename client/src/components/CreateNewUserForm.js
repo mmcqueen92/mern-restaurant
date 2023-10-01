@@ -30,7 +30,6 @@ export default function CreateNewUserForm() {
         const data = await newUser.json();
 
         if (data.status === "ok") {
-            console.log("User created successfully: ", data.user)
             setEmail("");
             setPassword("")
             localStorage.setItem("jwt_token", JSON.stringify(data.token))

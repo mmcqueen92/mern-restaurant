@@ -22,11 +22,6 @@ export default function UserProfile(props) {
     fetchUserOrders(user._id).then((res) => setUserOrders(res));
   }, [user]);
 
-  // for testing purposes
-  // useEffect(() => {
-  //   console.log("USER ORDERS: ", userOrders)
-  // }, [userOrders])
-
   const handleDelete = async (addressToDelete) => {
     const newAddresses = user.addresses.filter(
       (address) => address !== addressToDelete
