@@ -21,11 +21,26 @@ export default function ReservationDashboard({user}) {
 
         return fetchJson;
     }
+
+    const sortedReservations = reservations.toSorted((a, b) => {
+        // Convert timeSlot strings to Date objects for comparison
+        const dateA = new Date(a.timeSlot);
+        const dateB = new Date(b.timeSlot);
+      
+        // Compare the Date objects
+        if (dateA < dateB) {
+          return -1; // a should come before b
+        } else if (dateA > dateB) {
+          return 1; // a should come after b
+        } else {
+          return 0; // a and b are equal
+        }
+      });
     return (
-        <div>
+        <div className="reservation-dashboard">
             <h1>Reservation Dashboard</h1>
             <div className="reservation-list">
-                {reservations.map((reservation) => <ReservationListItem reservation={reservation}/>)}
+                {sortedReservations.map((reservation, i) => <ReservationListItem reservation={reservation} key={i}/>)}
             </div>
 
         </div>

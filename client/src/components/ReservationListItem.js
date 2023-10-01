@@ -1,4 +1,5 @@
 export default function ReservationListItem({ reservation }) {
+
   const reservationDate = new Date(reservation.timeSlot);
 
   // Define options for formatting the date and time
@@ -14,15 +15,19 @@ export default function ReservationListItem({ reservation }) {
   // Convert the Date object to a readable string
   const formattedDate = reservationDate.toLocaleString("en-US", options);
   return (
-    <div>
-      {reservation.name}
-      <br />
-      {reservation.phone}
-      <br />
-      {formattedDate}
-      <br />
-      {reservation.numberOfPeople}
-      <br />
+    <div className="reservation-list-item">
+      <div>
+        <strong>Name:</strong> {reservation.name}
+      </div>
+      <div>
+        <strong>Phone:</strong> {reservation.phone}
+      </div>
+      <div>
+        <strong>Date:</strong> {formattedDate}
+      </div>
+      <div>
+        <strong>Number of People:</strong> {reservation.numberOfPeople}
+      </div>
     </div>
   );
 }
