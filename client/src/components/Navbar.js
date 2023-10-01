@@ -39,9 +39,9 @@ export default function Navbar(props) {
           <NavLink to="/user-profile" element={<UserProfile />}>
             <button className="navbar-button">Profile</button>
           </NavLink>
-          <button onClick={logOut}>
+          <NavLink to="/logout">
             <button className="navbar-button">Log Out</button>
-          </button>
+          </NavLink>
         </span>
       )}
       {user && user.isAdmin && (

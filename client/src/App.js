@@ -15,6 +15,9 @@ import Login from "./pages/Login";
 import CreateNewUser from "./pages/CreateNewUser";
 import UserProfile from "./pages/UserProfile";
 import Reservations from "./pages/Reservations"
+import LogOut from "./pages/LogOut";
+
+
 
 function App() {
   const initialCart = useMemo(() => [], []);
@@ -23,6 +26,9 @@ function App() {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [menu, setMenu] = useState([]);
+
+  
+
 
   const fetchMenu = async () => {
     const response = await fetch("http://localhost:5050/api/menu", {
@@ -72,6 +78,7 @@ function App() {
   const logOut = () => {
     setUser(null);
     localStorage.setItem("mern_restaurant_user", null);
+
   };
 
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
@@ -186,6 +193,7 @@ function App() {
             <Route path="/register" element={<CreateNewUser user={user} />} />
             <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>} />
             <Route path="/reservations" element={<Reservations/>}/>
+            <Route path="/logout" element={<LogOut setUser={setUser}/>}/>
           </Routes>
         </main>
       </Router>

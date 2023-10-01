@@ -81,6 +81,7 @@ export default function ReservationPage() {
         <ul className="selected-date-info">
           {" "}
           {/* Moved ul outside */}
+          {selectedDate ? <h1>{selectedDate.toDateString()}</h1> : <></>}
           {getTimeSlotsForSelectedDate(selectedDate).map((timeSlot) => (
             <li
               key={timeSlot._id}
@@ -91,7 +92,7 @@ export default function ReservationPage() {
             >
               {timeSlot.start_time.toLocaleTimeString()} -{" "}
               {timeSlot.end_time.toLocaleTimeString()}
-              {timeSlot.seats_booked >= 2 && (
+              {timeSlot.seats_booked <= 28 && (
                 <span className="seats-available">
                   {30 - timeSlot.seats_booked} seats available
                 </span>
