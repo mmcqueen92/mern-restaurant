@@ -78,6 +78,7 @@ export default function ReservationForm(props) {
     <div className="reservation-form">
       <h3>Create Reservation</h3>
       <div className="reservation-form-time">{timeSlot.start_time.toLocaleString('en-US', timeOptions)}</div>
+      <div>{timeSlot.capacity - timeSlot.seats_booked} seats available</div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
