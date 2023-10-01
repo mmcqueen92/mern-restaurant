@@ -71,7 +71,6 @@ export default function ReservationPage() {
 
   return (
     <div className="reservation-page">
-      <h2>Available Time Slots</h2>
       <div className="calendar-container">
         <Calendar
           value={selectedDate}
@@ -83,6 +82,7 @@ export default function ReservationPage() {
           <ul className="selected-date-info">
             {" "}
             {/* Moved ul outside */}
+            <h2>Available Time Slots</h2>
             {selectedDate ? <h1>{selectedDate.toDateString()}</h1> : <></>}
             {getTimeSlotsForSelectedDate(selectedDate).map((timeSlot) => (
               <div
@@ -97,7 +97,6 @@ export default function ReservationPage() {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}{" "}
-
                 </div>
                 {timeSlot.seats_booked <= 28 && (
                   <div className="seats-available">
