@@ -7,6 +7,14 @@ export default function Cart(props) {
   const reduceQuantity = props.reduceQuantity;
   const emptyCart = props.emptyCart;
 
+  let total = 0;
+  for (let item of cart) {
+  console.log("ITEM: ", item)
+    total += (item.price * item.quantity)
+  }
+
+  
+
   return (
     <div className="menu-page-cart">
       <h1 className="text-3xl underline decoration-wavy decoration-from-font mb-3">
@@ -20,6 +28,7 @@ export default function Cart(props) {
             reduceQuantity={reduceQuantity}
             emptyCart={emptyCart}
           ></CartList>
+          <div>Total: ${total}</div>
           
           <NavLink to="/checkout">
             <button className="checkout-button">Checkout</button>

@@ -181,6 +181,10 @@ code {
   align-items: center;
 }
 
+.checkout-header {
+  font-size: 3rem;
+}
+
 /* Style for the CartListItem container */
 .cart-item {
   display: flex;
@@ -1177,4 +1181,12 @@ label {
 
 .cancel-button:hover {
   background-color: #999;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto;
 }

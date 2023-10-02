@@ -60,7 +60,7 @@ export default function CreateNewUserForm() {
         ></input>
 
         <button type="submit" className="login-button">
-          Login
+          Register
         </button>
       </form>
     </div>

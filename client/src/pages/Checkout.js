@@ -25,21 +25,24 @@ export default function Checkout(props) {
 
   return (
     <div className="checkout-container">
-      <h2>Checkout!</h2>
-      <form>
+      <h2 className="checkout-header">Checkout!</h2>
+      <form className="checkout-form">
         <input
+          className="form-input"
           type="text"
           placeholder="Enter an email"
           onChange={handleEmail}
           value={email}
-        ></input>
+        />
         <input
+          className="form-input"
           type="text"
           placeholder="Enter your address"
           onChange={handleAddress}
           value={address}
-        ></input>
+        />
       </form>
+
       <CartList
         cart={cart}
         addToCart={addToCart}
