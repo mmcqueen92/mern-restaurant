@@ -26,9 +26,11 @@ export default function ViewOrder(props) {
   }, [id]);
 
   return (
-    <div>
-      <h3>Order {id}</h3>
-      <p>Order Status: {orderInfo ? orderInfo.status : "...loading"}</p>
+    <div className="view-order">
+      <h3 className="order-title">Order {id}</h3>
+      <p className="order-status">
+        Order Status: {orderInfo ? orderInfo.status : "...loading"}
+      </p>
     </div>
   );
 }

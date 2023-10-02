@@ -75,7 +75,7 @@ export default function CheckoutForm(props) {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement />
-      <button>
+      <button className="payment-button">
         <span>{isProcessing ? "Processing..." : "Pay now"}</span>
       </button>
 

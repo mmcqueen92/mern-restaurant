@@ -1190,3 +1190,26 @@ label {
   max-width: 300px;
   margin: 0 auto;
 }
+
+.payment-page-header {
+  font-size: 3rem;
+}
+
+.view-order {
+  background-color: #f5f5f5; /* Background color */
+  border: 1px solid #333333; /* Border color */
+  border-radius: 4px; /* Border radius */
+  padding: 20px; /* Padding */
+  max-width: 400px; /* Maximum width */
+  margin: 0 auto; /* Center align */
+  text-align: center; /* Center text */
+}
+
+.order-title {
+  font-size: 24px; /* Font size for the title */
+  margin-bottom: 10px; /* Spacing below the title */
+}
+
+.order-status {
+  font-size: 16px; /* Font size for the status */
+}

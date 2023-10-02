@@ -41,7 +41,7 @@ export default function Payment(props) {
 
   return (
     <div>
-      <h1>Payment</h1>
+      <h1 className="payment-page-header">Payment</h1>
       {stripePromise && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm
