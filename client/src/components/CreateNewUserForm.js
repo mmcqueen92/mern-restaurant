@@ -44,7 +44,7 @@ export default function CreateNewUserForm() {
       <h1 className="login-header">Register</h1>
       <form id="login-form" onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="email"
           placeholder="Enter your email"
           onChange={handleEmail}
           value={email}
