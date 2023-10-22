@@ -47,7 +47,7 @@ export default function LoginForm(props) {
       <h1 className="login-header">Login</h1>
       <form id="login-form" onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="email"
           placeholder="Enter your email"
           onChange={handleEmail}
           value={email}
