@@ -1290,6 +1290,7 @@ label {
   .hamburger-menu {
     display: flex;
     flex-direction: column;
+    z-index: 1000;
   }
 
   .toggle-hamburger-button {
@@ -1302,5 +1303,9 @@ label {
   .hamburger-container {
     display: flex;
     flex-direction: column;
+  }
+
+  .navbar {
+    z-index: 1000;
   }
 }
