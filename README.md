@@ -31,3 +31,11 @@ Screenshots:
 !["screenshot of the login page"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/login.PNG?raw=true)
 
 !["screenshot of the register page"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/register.PNG?raw=true)
+
+!["screenshot of the home page with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_home.PNG?raw=true)
+
+!["screenshot of the home page with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_home.PNG?raw=true)
+
+!["screenshot of the menu with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_menu.PNG?raw=true)
+
+!["screenshot of the navbar with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_navbar.PNG?raw=true)
