@@ -14,23 +14,20 @@ import ViewOrder from "./pages/ViewOrder";
 import Login from "./pages/Login";
 import CreateNewUser from "./pages/CreateNewUser";
 import UserProfile from "./pages/UserProfile";
-import Reservations from "./pages/Reservations"
+import Reservations from "./pages/Reservations";
 import LogOut from "./pages/LogOut";
 import DeliveryDashboard from "./pages/DeliveryDashboard";
 import ReservationDashboard from "./pages/ReservationDashboard";
-
-
 
 function App() {
   const initialCart = useMemo(() => [], []);
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(initialCart);
+  const [showCart, setShowCart] = useState(true);
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [menu, setMenu] = useState([]);
-
-  
-
+  const [showHamburger, setShowHamburger] = useState(false);
 
   const fetchMenu = async () => {
     const response = await fetch("http://localhost:5050/api/menu", {
@@ -75,7 +72,6 @@ function App() {
   const logOut = () => {
     setUser(null);
     localStorage.setItem("mern_restaurant_user", null);
-
   };
 
   // if item is in cart already, increase quantity by 1. if not, insert new item into cart
@@ -117,7 +113,16 @@ function App() {
   };
 
   // empty cart function
-  const emptyCart = () => setCart(initialCart)
+  const emptyCart = () => setCart(initialCart);
+
+  // toggle cart function
+  const toggleCart = () => {
+    showCart ? setShowCart(false) : setShowCart(true);
+  };
+
+  const toggleHamburger = () => {
+    showHamburger ? setShowHamburger(false) : setShowHamburger(true);
+  };
 
   // handleAddress function for controlled component in Checkout
   const handleAddress = (event) => {
@@ -132,7 +137,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar logOut={logOut} user={user}></Navbar>
+        <Navbar
+          logOut={logOut}
+          user={user}
+          showHamburger={showHamburger}
+          toggleHamburger={toggleHamburger}
+        ></Navbar>
         <main>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -142,6 +152,8 @@ function App() {
                 <Menu
                   menu={menu}
                   addToCart={addToCart}
+                  toggleCart={toggleCart}
+                  showCart={showCart}
                   reduceQuantity={reduceQuantity}
                   cart={cart}
                   emptyCart={emptyCart}
@@ -194,12 +206,17 @@ function App() {
               element={<ReservationDashboard user={user} />}
             ></Route>
             <Route path="/view-order/:id" element={<ViewOrder />}></Route>
-            <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+            <Route
+              path="/login"
+              element={<Login user={user} setUser={setUser} />}
+            />
             <Route path="/register" element={<CreateNewUser user={user} />} />
-            <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser}/>} />
-            <Route path="/reservations" element={<Reservations/>}/>
-            <Route path="/logout" element={<LogOut setUser={setUser}/>}/>
-
+            <Route
+              path="/user-profile"
+              element={<UserProfile user={user} setUser={setUser} />}
+            />
+            <Route path="/reservations" element={<Reservations />} />
+            <Route path="/logout" element={<LogOut setUser={setUser} />} />
           </Routes>
         </main>
       </Router>

@@ -2,11 +2,15 @@ import Cart from "../components/Cart";
 import MenuCategory from "../components/MenuCategory";
 
 export default function Menu(props) {
-  const menu = props.menu;
-  const addToCart = props.addToCart;
-  const reduceQuantity = props.reduceQuantity;
-  const cart = props.cart;
-  const emptyCart = props.emptyCart;
+  const {
+    toggleCart,
+    menu,
+    addToCart,
+    reduceQuantity,
+    cart,
+    emptyCart,
+    showCart,
+  } = props;
 
   let sortedMenu = {};
   for (let item of menu) {
@@ -31,15 +35,15 @@ export default function Menu(props) {
 
   return (
     <div className="menu-container">
+      <Cart
+        addToCart={addToCart}
+        toggleCart={toggleCart}
+        showCart={showCart}
+        reduceQuantity={reduceQuantity}
+        cart={cart}
+        emptyCart={emptyCart}
+      ></Cart>
       <div className="menu">{categories}</div>
-
-        <Cart
-          addToCart={addToCart}
-          reduceQuantity={reduceQuantity}
-          cart={cart}
-          emptyCart={emptyCart}
-        ></Cart>
-
     </div>
   );
 }

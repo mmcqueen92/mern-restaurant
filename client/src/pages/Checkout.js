@@ -59,7 +59,7 @@ export default function Checkout(props) {
           <div className="total-section">Total:</div>
         </div>
         <div className="cost-breakdown-values">
-          ${itemTotal}
+          ${itemTotal.toFixed(2)}
           <br />${cartTax.toFixed(2)}
           <br />
           $5
