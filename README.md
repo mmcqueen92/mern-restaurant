@@ -38,4 +38,6 @@ Screenshots:
 
 !["screenshot of the menu with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_menu.PNG?raw=true)
 
+!["screenshot of the menu with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_menu_cart.PNG?raw=true)
+
 !["screenshot of the navbar with responsive design"](https://github.com/mmcqueen92/mern-restaurant/blob/main/docs/small_screen_navbar.PNG?raw=true)
